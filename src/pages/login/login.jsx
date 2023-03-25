@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { db } from '../../../firebase'
 import { collection, getDocs } from "firebase/firestore";
 import './styles.scss'
 
 const Login = () => {
 
+    const navigate = useNavigate()
+
+
     const [user, setUser] = useState("")
 
     const onFinish = () => {
+        navigate("/home")
         if(user != " "){
 
         }
@@ -72,7 +77,7 @@ const Login = () => {
                 <div className='card'>
                     <h1>Inicio de sesión</h1>
                     <input className='input' value={user} onChange={(e) => setUser(e.target.value)} placeholder='Identificacion' />
-                    <button onClick={obtenerDatos}>Ingresar</button>
+                    <button onClick={onFinish}>Ingresar</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,15 @@
+
+:root{
+    --background-color: #CBE4DE;
+    --color-primary: #2E4F4F;
+    --box-shadow: 0 3px 7px -1px #a8a8ab;
+    // $color-secundario: #6B6;
+    // $color-texto: #666;
+}
 body{
 
     margin : 0;
+
 
     input{
         outline: none;
