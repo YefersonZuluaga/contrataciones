@@ -67,9 +67,13 @@
                 }
             }
         }
-
-
     }
+}
 
-
+@media (max-width : 540px){
+    .container-home {
+        & .container-buttons {
+            width: 70%;
+        }
+    }
 }
