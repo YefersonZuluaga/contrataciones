@@ -28,8 +28,6 @@ const CreateEmployee = () => {
             <Header />
             <div className='prueba'>
                 <h1>Crear Empleado</h1>
-                <input type='file' onChange={e => prueba(e.target.files)} />
-                subir
 
                 <div>
                     <>
@@ -55,11 +53,6 @@ const CreateEmployee = () => {
                             <Form.Item label="Apellido">
                                 <Input />
                             </Form.Item>
-                            {/* <Form.Item label="Nombre">
-                                <Select>
-                                    <Select.Option value="demo">Demo</Select.Option>
-                                </Select>
-                            </Form.Item> */}
                             <Form.Item label="Examenes medicos" valuePropName="fileList">
                                 <Upload action="/upload.do" listType="picture-card">
                                     <div>
