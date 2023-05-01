@@ -1,5 +1,5 @@
-import React from 'react'
-import './styles.scss'
+import React from 'react';
+import './styles.scss';
 import useLoginViewModel from './viewModel/login.ViewModel';
 
 const Login = () => {
@@ -9,6 +9,7 @@ const Login = () => {
     return (
         <div className='container-login'>
             {contextHolder}
+            
             <div className='container-logo'>
                 <img src='https://firebasestorage.googleapis.com/v0/b/contrataci0nes.appspot.com/o/imagenes%2Ficon.png?alt=media&token=6d7b67ca-c4dd-4af1-9169-ba1e66e5cb9b' />
 

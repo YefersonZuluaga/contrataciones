@@ -1,12 +1,14 @@
 import { message } from 'antd';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { getDocs } from 'firebase/firestore';
-import React, { useState } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../../../../firebase';
+// import { db } from '../../../firebase';
 
 const useLoginViewModel = () => {
 
-  const auth = getAuth();
+  // const auth = getAuth();
   const navigate = useNavigate()
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -15,52 +17,63 @@ const useLoginViewModel = () => {
 
   const onSubmit = () => {
 
-      if ((email != "" && email != " ") && (password != "" && password != " ")) {
-          signInWithEmailAndPassword(auth, email, password)
-              .then((userCredential) => {
-                  const user = userCredential.user;
-                  console.log(user)
-                  navigate("/home")
-              })
-              .catch((e) => {
-                  console.log("usuario no encontrado")
-                  error("Usuario incorrecto.")
-                  const errorCode = e.code;
-                  const errorMessage = e.message;
-              });
-      } else {
-          warning("Complete todos los campos.")
-      }
+    if ((email != "" && email != " ") && (password != "" && password != " ")) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user)
+          navigate("/home")
+        })
+        .catch((e) => {
+          console.log("usuario no encontrado")
+          error("Usuario incorrecto.")
+          const errorCode = e.code;
+          const errorMessage = e.message;
+        });
+    } else {
+      warning("Complete todos los campos.")
+    }
   }
 
 
   const obtenerDatos = async () => {
 
-      const querySnapshot = await getDocs(collection(db, "usuarios"))
-      querySnapshot.forEach((doc) => {
-          if (user == doc.id) {
-              navigate('/home')
-              console.log("entro")
-          }
-          // console.log(doc.id)
-          // console.log(doc.data());
-      });
+    const querySnapshot = await getDocs(collection(db, "empleados"))
+    querySnapshot.forEach((doc) => {
+      // if (user == doc.id) {
+      //   navigate('/home')
+      //   console.log("entro")
+      // }
+      // console.log(doc.id)
+      console.log(doc.data());
+    });
+
+    const q = query(collection(db, "empleados"), where("rol", "==", "empleado"));
+
+    const querySnapshot2 = await getDocs(q);
+    querySnapshot2.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
   }
 
   const error = (message) => {
-      messageApi.open({
-          type: 'error',
-          content: message,
-      });
+    messageApi.open({
+      type: 'error',
+      content: message,
+    });
   };
 
   const warning = (message) => {
-      messageApi.open({
-          type: 'warning',
-          content: message,
-      });
+    messageApi.open({
+      type: 'warning',
+      content: message,
+    });
   };
 
+  useEffect(() => {
+    obtenerDatos()
+  }, []);
 
   return {
     contextHolder,
