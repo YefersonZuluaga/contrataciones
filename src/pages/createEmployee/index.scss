@@ -1,0 +1,53 @@
+.container-createEmployee {
+  width: 100%;
+  padding-top: 11vh;
+  height: 89vh;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .prueba {
+    position: relative;
+    width: 70%;
+    height: auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & h1 {
+      color: var(--color-primary);
+    }
+
+    .container-button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .button-register {
+        height: 35px;
+        width: 300px;
+        margin: 0 auto;
+        background-color: var(--color-primary);
+        box-shadow: var(--box-shadow);
+        border: none;
+        border-radius: 20px;
+        opacity: 1;
+        color: #fff;
+        font-weight: bold;
+        font-size: 15px;
+        transition: 0.7s;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
