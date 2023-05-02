@@ -11,12 +11,12 @@ const NotFound = () => {
     <div className='container-notFound'>
       <div>
         <h1 className='icon'>
-      <ImSad />
-      </h1>
+          <ImSad />
+        </h1>
         <h1 className='titulo'>404</h1>
         <p className='contenido'>Page not found</p>
       </div>
-      <button onClick={()=> navigate("/home")} className='button'>Ir al incio</button>
+      <button onClick={() => navigate("/home")} className='button'>Ir al incio</button>
 
     </div>
   )
