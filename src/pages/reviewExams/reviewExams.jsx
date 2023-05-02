@@ -36,7 +36,11 @@ const ReviewExams = () => {
       dataIndex: '',
       key: '',
       render: (a) => {
-        return <button onClick={()=>  navigate(`/detail-exams/${a.cedula}`)}>Ver examenes</button>
+        return (
+          <button className="button-render" onClick={() => navigate(`/detail-exams/${a.cedula}`)}>
+            Ver examenes
+          </button>
+        )
       }
     }
   ]
@@ -48,7 +52,6 @@ const ReviewExams = () => {
   }
 
   useEffect(() => {
-  
     prueba()
   }, [])
 
@@ -56,7 +59,8 @@ const ReviewExams = () => {
     <div className="container-reviewExamns">
       <Header />
       <div className="table">
-        <Table dataSource={dataUsers} columns={columns} />
+        <h1>Lista Aspirantes</h1>
+        <Table dataSource={dataUsers} columns={columns} pagination={false} />
       </div>
     </div>
   )

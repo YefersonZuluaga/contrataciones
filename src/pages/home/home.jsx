@@ -1,31 +1,30 @@
 import React from 'react'
+import { FaDoorClosed, FaUserAlt, FaUserPlus } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 import Header from '../components/header/Header'
-import { FaUserAlt, FaUserPlus , FaDoorClosed} from "react-icons/fa";
 import './index.scss'
-import { useNavigate } from 'react-router-dom';
 const Home = () => {
-  
   const navigate = useNavigate()
 
   return (
-    <div className='container-home'>
+    <div className="container-home">
       <Header />
-      <div className='container-buttons'>
-        <div className='top'>
-          <button onClick={()=> navigate("/create-employee")}>
+      <div className="container-buttons">
+        <div className="top">
+          <button onClick={() => navigate('/create-aspirant')}>
             <FaUserPlus />
-            <p>Crear empleado</p>
+            <p>Crear Aspirante</p>
           </button>
-          <button>
+          <button onClick={() => navigate('/review')}>
             <FaUserAlt />
             <p>Empleado</p>
           </button>
         </div>
-        <div className='bottom'>
-          <button onClick={()=> navigate("/")}>
-            <FaDoorClosed/>
+        <div className="bottom">
+          <button onClick={() => navigate('/')}>
+            <FaDoorClosed />
             <p>Cerrar sesion</p>
-            </button>
+          </button>
         </div>
       </div>
     </div>

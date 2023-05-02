@@ -7,7 +7,7 @@ import Header from '../components/header/Header'
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore'
 import './index.scss'
 
-const CreateEmployee = () => {
+const CreateAspirant = () => {
   // const [messageApi, contextHolder] = message.useMessage();
   // const [componentDisabled, setComponentDisabled] = useState(true)
   const [urlImagen, setUrlImagen] = useState('')
@@ -215,4 +215,4 @@ const CreateEmployee = () => {
   )
 }
 
-export default CreateEmployee
+export default CreateAspirant

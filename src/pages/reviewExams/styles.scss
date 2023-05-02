@@ -7,5 +7,49 @@
 
   .table {
     position: relative;
+    width: 70%;
+    h1 {
+      text-align: center;
+      color: var(--color-primary);
+    }
+    .ant-table {
+      box-shadow: var(--box-shadow);
+      .ant-table-container {
+        .ant-table-content {
+          .ant-table-thead {
+            tr {
+              .ant-table-cell {
+                background-color: var(--color-primary);
+                color: #fff;
+                text-align: center;
+              }
+            }
+          }
+          .ant-table-tbody {
+            .ant-table-row {
+              .ant-table-cell {
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+
+      .button-render {
+        height: 30px;
+        width: 120px;
+        background-color: var(--color-primary);
+        border: none;
+        border-radius: 20px;
+        box-shadow: var(--box-shadow);
+        color: #fff;
+        transition: 0.7s;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
   }
 }
