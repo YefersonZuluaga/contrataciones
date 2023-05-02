@@ -7,8 +7,11 @@ import { useParams } from 'react-router-dom'
 import { db, storage } from '../../../../../firebase'
 import Header from '../../../components/header/Header'
 import '../../styles/detailExams.scss'
+import { useNavigate } from 'react-router-dom';
+
 
 const DetailExams = () => {
+  const navigate = useNavigate()
 
   const { TextArea } = Input;
   const { userId } = useParams()
@@ -90,6 +93,7 @@ const DetailExams = () => {
           <div className='container-buttons'>
             <button>Aprobar</button>
             <button>Rechazar</button>
+            <button  onClick={() => navigate("/review")} className='button-back'>Volver</button>
           </div>
         </div>
       </div>
