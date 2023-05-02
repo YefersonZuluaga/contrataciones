@@ -4,7 +4,6 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../../../firebase';
-// import { db } from '../../../firebase';
 
 const useLoginViewModel = () => {
 
