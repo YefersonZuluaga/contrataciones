@@ -7,7 +7,6 @@ import { db } from '../../../../firebase';
 
 const useLoginViewModel = () => {
 
-  // const auth = getAuth();
   const navigate = useNavigate()
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -30,7 +29,7 @@ const useLoginViewModel = () => {
           const errorMessage = e.message;
         });
     } else {
-      warning("Complete todos los campos.")
+      warning("Por favor diligenciar todos los campos.")
     }
   }
 
@@ -39,11 +38,6 @@ const useLoginViewModel = () => {
 
     const querySnapshot = await getDocs(collection(db, "empleados"))
     querySnapshot.forEach((doc) => {
-      // if (user == doc.id) {
-      //   navigate('/home')
-      //   console.log("entro")
-      // }
-      // console.log(doc.id)
       console.log(doc.data());
     });
 
@@ -51,7 +45,6 @@ const useLoginViewModel = () => {
 
     const querySnapshot2 = await getDocs(q);
     querySnapshot2.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
     });
   }

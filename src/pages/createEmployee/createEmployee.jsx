@@ -8,8 +8,7 @@ import { collection, doc, getDoc, setDoc } from 'firebase/firestore'
 import './index.scss'
 
 const CreateEmployee = () => {
-  // const [messageApi, contextHolder] = message.useMessage();
-  // const [componentDisabled, setComponentDisabled] = useState(true)
+
   const [urlImagen, setUrlImagen] = useState('')
   const storage = getStorage()
   const [listaImagenes, setListaImagenes] = useState([])
@@ -77,7 +76,7 @@ const CreateEmployee = () => {
           // All the items under listRef.
           console.log(itemRef)
         })
-        // console.log(listaImagenes)
+
       })
       .catch((error) => {
         // Uh-oh, an error occurred!
@@ -89,7 +88,7 @@ const CreateEmployee = () => {
           console.log(url)
           setUrlImagen(url)
         })
-        .catch((error) => {})
+        .catch((error) => { })
     }, 2000)
   }
 
@@ -100,26 +99,6 @@ const CreateEmployee = () => {
     prueba.push(e.file.originFileObj)
     setListaImagenes(prueba)
 
-    // let selected = e.file.originFileObj;
-
-    // if (!selected) {
-    //     setImgError('Please select file');
-    //     return;
-    // }
-
-    // if (!selected.type.includes('image')) {
-    //     setImgError('Please select image file');
-    //     return;
-    // }
-
-    // if (selected.size > 1000000) {
-    //     setImgError('Please select smaller file size');
-    //     return;
-    // }
-
-    // setImgError(null);
-    // setImg(selected);
-    // handleSubmit()
   }
 
   const onFinishForm = async (values) => {
@@ -166,9 +145,7 @@ const CreateEmployee = () => {
                 labelCol={{
                   span: 6
                 }}
-                // wrapperCol={{
-                //   span: 14
-                // }}
+               
                 onFinish={onFinishForm}
               >
                 <Form.Item label="Identificacion" name="cedula">
