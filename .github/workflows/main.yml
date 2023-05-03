@@ -22,4 +22,11 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build # Reemplaza 'npm run build' con el comando nec
+        run: npm run build # Reemplaza 'npm run build' con el comando necesario para construir tu proyecto, si es diferente
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: 1//05kkGEFaKU-IqCgYIARAAGAUSNwF-L9Ir8YPE0qEeqoLlIggb8ssgMh-H1c-mT2IujygwQm-6NXds9gSAROwe-hidQ20tunBi-Tc
