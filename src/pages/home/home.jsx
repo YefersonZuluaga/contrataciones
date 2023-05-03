@@ -11,19 +11,24 @@ const Home = () => {
       <Header path={'/review'} redirect={false} />
       <div className="container-buttons">
         {rol == 'empleado' ? (
-          <>
-            <div className="top">
-              <button onClick={() => navigate('/create-aspirant')}>
-                <FaUserPlus />
-                <p>Crear Aspirante</p>
-              </button>
-              <button onClick={() => navigate('/review')}>
-                <FaUserAlt />
-                <p>Empleado</p>
-              </button>
-            </div>
-          </>
-        ) : null}
+          <div className="top-empleado">
+            <button onClick={() => navigate('/create-aspirant')}>
+              <FaUserPlus />
+              <p>Crear Aspirante</p>
+            </button>
+            <button onClick={() => navigate('/review')}>
+              <FaUserAlt />
+              <p>Empleado</p>
+            </button>
+          </div>
+        ) : (
+          <div className="top-supervisor">
+            <button onClick={() => navigate('/review')}>
+              <FaUserAlt />
+              <p>Lista Aspirantes</p>
+            </button>
+          </div>
+        )}
         <div className="bottom">
           <button onClick={() => navigate('/')}>
             <FaDoorClosed />

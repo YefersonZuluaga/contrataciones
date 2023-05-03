@@ -1,79 +1,107 @@
 .container-home {
-    width: 100%;
-    height: 100vh;
-    background-color: var(--background-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    & .container-buttons {
-        width: 25%;
-        height: 40%;
+  & .container-buttons {
+    width: 25%;
+    height: 30%;
 
-        & .top {
-            width: 100%;
-            height: 60%;
-            display: flex;
-            justify-content: space-between;
+    & .top-empleado {
+      width: 100%;
+      height: 60%;
+      display: flex;
+      justify-content: space-between;
 
-            button {
-                height: 90%;
-                width: 47%;
-                border-radius: 20px;
-                border: none;
-                color: #fff;
-                background-color: var(--color-primary);
-                box-shadow: var(--box-shadow);
-                font-size: 17px;
-                transition: 1s;
+      button {
+        height: 90%;
+        width: 47%;
+        border-radius: 20px;
+        border: none;
+        color: #fff;
+        background-color: var(--color-primary);
+        box-shadow: var(--box-shadow);
+        font-size: 17px;
+        transition: 1s;
 
-                cursor: pointer;
+        cursor: pointer;
 
-                p {
-                    margin: 0;
-                    padding: 0;
-                }
-
-
-                &:hover{
-                    transform: scale(1.1);
-                }
-            }
+        p {
+          margin: 0;
+          padding: 0;
         }
 
-        & .bottom {
-            width: 100%;
-            height: 40%;
-
-            button {
-                height: 90%;
-                width: 100%;
-                border-radius: 20px;
-                color: #fff;
-                border: none;
-                background-color: var(--color-primary);
-                font-size: 17px;
-                box-shadow: 0 3px 7px -1px #a8a8ab;
-                cursor: pointer;
-                transition: 1s;
-
-                p {
-                    margin: 0;
-                    padding: 0;
-                }
-
-                &:hover{
-                    transform: scale(1.1);
-                }
-            }
+        &:hover {
+          transform: scale(1.1);
         }
+      }
     }
+    & .top-supervisor {
+      width: 100%;
+      height: 60%;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        height: 90%;
+        width: 100%;
+        border-radius: 20px;
+        border: none;
+        color: #fff;
+        background-color: var(--color-primary);
+        box-shadow: var(--box-shadow);
+        font-size: 17px;
+        transition: 1s;
+
+        cursor: pointer;
+
+        p {
+          margin: 0;
+          padding: 0;
+        }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    & .bottom {
+      width: 100%;
+      height: 40%;
+
+      button {
+        height: 90%;
+        width: 100%;
+        border-radius: 20px;
+        color: #fff;
+        border: none;
+        background-color: var(--color-primary);
+        font-size: 17px;
+        box-shadow: 0 3px 7px -1px #a8a8ab;
+        cursor: pointer;
+        transition: 1s;
+
+        p {
+          margin: 0;
+          padding: 0;
+        }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
 }
 
-@media (max-width : 540px){
-    .container-home {
-        & .container-buttons {
-            width: 70%;
-        }
+@media (max-width: 540px) {
+  .container-home {
+    & .container-buttons {
+      width: 70%;
     }
+  }
 }
