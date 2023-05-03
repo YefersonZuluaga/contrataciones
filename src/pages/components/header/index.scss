@@ -17,8 +17,7 @@
     opacity: 0.8;
   }
 
-  .redireccion{
-
+  .redireccion {
     color: #fff;
     font-size: 3rem;
     margin-left: 0.5rem;
@@ -47,5 +46,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media (max-width: 370px) {
+  .container-header {
+    img {
+      height: 70%;
+    }
+  }
+}
+@media (min-width: 370px) and (max-width: 576px) {
+  .container-header {
+    img {
+      height: 70%;
+    }
   }
 }

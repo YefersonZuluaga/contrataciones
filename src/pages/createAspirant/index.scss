@@ -1,13 +1,12 @@
 .container-createEmployee {
   width: 100%;
-  padding-top: 11vh;
-  height: 89vh;
   background-color: var(--background-color);
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-bottom: 20px;
 
   & .prueba {
+    margin-top: 120px;
     position: relative;
     width: 70%;
     height: auto;
@@ -52,3 +51,26 @@
     }
   }
 }
+
+@media (max-width: 370px) {
+  .container-createEmployee {
+    width: 100%;
+    h1 {
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 370px) and (max-width: 576px) {
+  // .container-createEmployee {
+  //   width: 100%;
+  //   margin-top: 170px;
+  //   h1 {
+  //     text-align: center;
+  //   }
+  // }
+} // $breakpoint-mobile-sm: 340px;
+// $breakpoint-mobile: 576px;
+// $breakpoint-tablet: 768px;
+// $breakpoint-laptop: 992px;
+// $breakpoint-desktop: 1366px;

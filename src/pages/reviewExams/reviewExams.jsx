@@ -5,15 +5,14 @@ import './styles.scss'
 import useReviewExamsViewModel from './viewModel/reviewExams.ViewModel'
 
 const ReviewExams = () => {
+  const { dataUsers, columns } = useReviewExamsViewModel()
 
-  const {dataUsers , columns} = useReviewExamsViewModel()
- 
   return (
     <div className="container-reviewExamns">
-      <Header path={"/home"} redirect={true}/>
+      <Header path={'/home'} redirect={true} />
       <div className="table">
         <h1>Lista Aspirantes</h1>
-        <Table dataSource={dataUsers} columns={columns} pagination={false} scroll={true}/>
+        <Table dataSource={dataUsers} columns={columns} pagination={true} scroll={true} />
       </div>
     </div>
   )

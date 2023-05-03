@@ -37,7 +37,6 @@ const useReviewExamsViewModel = () => {
       dataIndex: '',
       key: '',
       render: (a) => {
-        console.log(a)
         return (
           <>
             <button className="button-render" onClick={() => navigate(`/detail-exams/${a.cedula}`)}>
@@ -50,14 +49,14 @@ const useReviewExamsViewModel = () => {
               >
                 Eliminar
               </button>
-            ) : (
+            ) : a.estadoExamenes == 'aprobados' ? (
               <button
                 className="button-render"
                 onClick={() => navigate(`/detail-exams/${a.cedula}`)}
               >
                 Continuar Proceso
               </button>
-            )}
+            ) : null}
           </>
         )
       }
