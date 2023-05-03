@@ -6,6 +6,7 @@ const useReviewExamsViewModel = () => {
   const [dataUsers, setDataUsers] = useState([])
 
   const navigate = useNavigate()
+  const rol = JSON.parse(localStorage.getItem('user')).rol
 
   const columns = [
     {
@@ -26,10 +27,10 @@ const useReviewExamsViewModel = () => {
     {
       title: 'Estado',
       dataIndex: 'estadoExamenes',
-      key: 'estadoExamenes' ,
+      key: 'estadoExamenes',
       render: (a) => {
         console.log(a)
-        return ( <p className={a} >{a}</p>)
+        return <p className={a}>{a}</p>
       }
     },
     {
@@ -48,7 +49,13 @@ const useReviewExamsViewModel = () => {
 
   const prueba = async () => {
     let values = await obtenerDatos()
-    setDataUsers(values)
+    if (rol == 'supervisor') {
+      let aux = values.filter((value) => value.estadoExamenes == 'pendientes')
+      setDataUsers(aux)
+      return
+    }
+    let aux = values.filter((value) => value.estadoExamenes != 'pendientes')
+    setDataUsers(aux)
   }
 
   useEffect(() => {
@@ -56,7 +63,8 @@ const useReviewExamsViewModel = () => {
   }, [])
 
   return {
-    dataUsers, columns
+    dataUsers,
+    columns
   }
 }
 
