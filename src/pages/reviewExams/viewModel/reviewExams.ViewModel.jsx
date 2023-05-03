@@ -50,11 +50,11 @@ const useReviewExamsViewModel = () => {
   const prueba = async () => {
     let values = await obtenerDatos()
     if (rol == 'supervisor') {
-      let aux = values.filter((value) => value.estadoExamenes == 'pendientes')
+      let aux = values.filter((value) => value.estadoExamenes == 'pendiente')
       setDataUsers(aux)
       return
     }
-    let aux = values.filter((value) => value.estadoExamenes != 'pendientes')
+    let aux = values.filter((value) => value.estadoExamenes != 'pendiente')
     setDataUsers(aux)
   }
 
