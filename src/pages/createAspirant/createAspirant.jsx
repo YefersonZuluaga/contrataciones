@@ -6,8 +6,16 @@ import './index.scss'
 import useCreateAspirantViewModel from './viewModel/createAspirant.ViewModel'
 
 const CreateAspirant = () => {
-  const { handleChange, handlePreview, listaImagenes, onFinishForm, form, disableButton } =
-    useCreateAspirantViewModel()
+  const {
+    handleChange,
+    handlePreview,
+    listaImagenes,
+    onFinishForm,
+    form,
+    disableButton,
+    handleChangePhotoProfile,
+    photoProfile
+  } = useCreateAspirantViewModel()
 
   return (
     <>
@@ -34,25 +42,26 @@ const CreateAspirant = () => {
                 <Form.Item label="Apellido" name="apellido">
                   <Input />
                 </Form.Item>
-                <Form.Item label="Examenes medicos" valuePropName="fileList">
+                <Form.Item label="Foto Aspirante" valuePropName="fileList">
                   <Upload
                     action="/upload.do"
                     listType="picture-card"
                     beforeUpload={() => false}
-                    onChange={handleChange}
+                    onChange={handleChangePhotoProfile}
                     onPreview={handlePreview}
-                    fileList={listaImagenes}
+                    fileList={photoProfile}
                   >
-                    <div>
-                      {/* <PlusOutlined /> */}
-                      <div
-                        style={{
-                          marginTop: 8
-                        }}
-                      >
-                        Upload
+                    {photoProfile && photoProfile.length == 1 ? null : (
+                      <div>
+                        <div
+                          style={{
+                            marginTop: 8
+                          }}
+                        >
+                          Cargar Imagen
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </Upload>
                 </Form.Item>
                 <Form.Item label="Examenes medicos" valuePropName="fileList">
@@ -64,16 +73,17 @@ const CreateAspirant = () => {
                     onPreview={handlePreview}
                     fileList={listaImagenes}
                   >
-                    <div>
-                      {/* <PlusOutlined /> */}
-                      <div
-                        style={{
-                          marginTop: 8
-                        }}
-                      >
-                        Upload
+                    {listaImagenes && listaImagenes.length >= 5 ? null : (
+                      <div>
+                        <div
+                          style={{
+                            marginTop: 8
+                          }}
+                        >
+                          Cargar Imagen
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </Upload>
                 </Form.Item>
                 <div className="container-button">

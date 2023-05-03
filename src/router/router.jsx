@@ -6,17 +6,20 @@ import Login from '../pages/login/login'
 import NotFound from '../pages/notFound/notFound'
 import DetailExams from '../pages/reviewExams/components/detailExams/detailExams'
 import ReviewExams from '../pages/reviewExams/reviewExams'
+import PrivateRoute from './privateRoute'
 
 const MainRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/review" element={<ReviewExams />} />
-        <Route path="/create-aspirant" element={<CreateAspirant />} />
-        <Route path="/detail-exams/:userId" element={<DetailExams />} />
-        <Route path="/" element={<Login />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<PrivateRoute />}>
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/review" element={<ReviewExams />} />
+          <Route exact path="/create-aspirant" element={<CreateAspirant />} />
+          <Route exact path="/detail-exams/:userId" element={<DetailExams />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

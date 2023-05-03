@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../../../../firebase';
+import { auth, db } from '../../../../firebase';
 
 const useLoginViewModel = () => {
 
@@ -16,9 +16,13 @@ const useLoginViewModel = () => {
   const onSubmit = () => {
 
     if ((email != "" && email != " ") && (password != "" && password != " ")) {
+      localStorage.setItem("user", { cedula: "df53478" })
+      // console.log(user)
+      navigate("/home")
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          localStorage.setItem({ cedula: "df53478" })
           console.log(user)
           navigate("/home")
         })

@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div className="container-home">
-      <Header path={"/review"} redirect={false}/>
+      <Header path={'/review'} redirect={false} />
       <div className="container-buttons">
         <div className="top">
           <button onClick={() => navigate('/create-aspirant')}>
@@ -21,7 +21,7 @@ const Home = () => {
           </button>
         </div>
         <div className="bottom">
-          <button onClick={() => navigate('/')}>
+          <button onClick={() => navigate('/login')}>
             <FaDoorClosed />
             <p>Cerrar sesion</p>
           </button>
