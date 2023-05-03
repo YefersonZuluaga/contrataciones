@@ -13,13 +13,13 @@ const MainRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<NotFound />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<PrivateRoute />}>
+        <Route element={<PrivateRoute />}>
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/review" element={<ReviewExams />} />
           <Route exact path="/create-aspirant" element={<CreateAspirant />} />
           <Route exact path="/detail-exams/:userId" element={<DetailExams />} />
         </Route>
+        <Route path="/" element={<Login />} />
       </Routes>
     </BrowserRouter>
   )
