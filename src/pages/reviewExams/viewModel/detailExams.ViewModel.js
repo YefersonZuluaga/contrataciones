@@ -60,7 +60,7 @@ const useDetailExamsViewModel = () => {
   }
 
   const prueba2 = () => {
-    const listRef = ref(storage, `usuarios/${userId}`)
+    const listRef = ref(storage, `usuarios/${userId}/examenes`)
     const listaImagenes = []
     listAll(listRef)
       .then((res) => {
@@ -83,7 +83,7 @@ const useDetailExamsViewModel = () => {
         console.log("values", values)
         setLoading(true)
       })
-    }, 2000)
+    }, 1000)
   }
 
 

@@ -5,23 +5,27 @@ import Header from '../components/header/Header'
 import './index.scss'
 const Home = () => {
   const navigate = useNavigate()
-
+  const rol = JSON.parse(localStorage.getItem('user')).rol
   return (
     <div className="container-home">
       <Header path={'/review'} redirect={false} />
       <div className="container-buttons">
-        <div className="top">
-          <button onClick={() => navigate('/create-aspirant')}>
-            <FaUserPlus />
-            <p>Crear Aspirante</p>
-          </button>
-          <button onClick={() => navigate('/review')}>
-            <FaUserAlt />
-            <p>Empleado</p>
-          </button>
-        </div>
+        {rol == 'empleado' ? (
+          <>
+            <div className="top">
+              <button onClick={() => navigate('/create-aspirant')}>
+                <FaUserPlus />
+                <p>Crear Aspirante</p>
+              </button>
+              <button onClick={() => navigate('/review')}>
+                <FaUserAlt />
+                <p>Empleado</p>
+              </button>
+            </div>
+          </>
+        ) : null}
         <div className="bottom">
-          <button onClick={() => navigate('/login')}>
+          <button onClick={() => navigate('/')}>
             <FaDoorClosed />
             <p>Cerrar sesion</p>
           </button>
