@@ -25,7 +25,7 @@ const Home = () => {
           <div className="top-supervisor">
             <button onClick={() => navigate('/review')}>
               <FaUserAlt />
-              <p>Lista Aspirantes</p>
+              <p>Listado Aspirantes Pendientes</p>
             </button>
           </div>
         )}
