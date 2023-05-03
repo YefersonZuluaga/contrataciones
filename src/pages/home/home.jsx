@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div className="container-home">
-      <Header />
+      <Header path={"/review"} redirect={false}/>
       <div className="container-buttons">
         <div className="top">
           <button onClick={() => navigate('/create-aspirant')}>

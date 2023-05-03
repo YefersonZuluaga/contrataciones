@@ -1,66 +1,19 @@
 import { Table } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { obtenerDatos } from '../../hooks/getUsersData'
+import React from 'react'
 import Header from '../components/header/Header'
 import './styles.scss'
+import useReviewExamsViewModel from './viewModel/reviewExams.ViewModel'
 
 const ReviewExams = () => {
-  const [dataUsers, setDataUsers] = useState([])
 
-  const navigate = useNavigate()
-
-  const columns = [
-    {
-      title: 'Cedula',
-      dataIndex: 'cedula',
-      key: 'cedula'
-    },
-    {
-      title: 'Nombre',
-      dataIndex: 'nombre',
-      key: 'nombre'
-    },
-    {
-      title: 'Apellido',
-      dataIndex: 'apellido',
-      key: 'apellido'
-    },
-    {
-      title: 'Estado',
-      dataIndex: 'estadoExamenes',
-      key: 'estadoExamenes'
-    },
-    {
-      title: '',
-      dataIndex: '',
-      key: '',
-      render: (a) => {
-        return (
-          <button className="button-render" onClick={() => navigate(`/detail-exams/${a.cedula}`)}>
-            Ver examenes
-          </button>
-        )
-      }
-    }
-  ]
-
-  const prueba = async () => {
-    let values = await obtenerDatos()
-    console.log(values)
-    setDataUsers(values)
-  }
-
-  useEffect(() => {
-    prueba()
-  }, [])
-
+  const {dataUsers , columns} = useReviewExamsViewModel()
+ 
   return (
     <div className="container-reviewExamns">
-      <Header />
+      <Header path={"/home"} redirect={true}/>
       <div className="table">
         <h1>Lista Aspirantes</h1>
-        <Table dataSource={dataUsers} columns={columns} pagination={false} />
+        <Table dataSource={dataUsers} columns={columns} pagination={false} scroll={true}/>
       </div>
     </div>
   )

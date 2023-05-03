@@ -8,6 +8,7 @@
   .table {
     position: relative;
     width: 70%;
+    height: 500px;
     h1 {
       text-align: center;
       color: var(--color-primary);
@@ -49,6 +50,19 @@
         &:hover {
           transform: scale(1.1);
         }
+      }
+
+      .aprobados{
+        font-weight: bold;
+        color: green;
+      }
+      .rechazados{
+        font-weight: bold;
+        color: red;
+      }
+      .pendiente{
+        font-weight: bold;
+        color: orange;
       }
     }
   }

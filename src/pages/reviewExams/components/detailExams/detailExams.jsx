@@ -1,69 +1,25 @@
-import { Image, Input } from 'antd'
-
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { getDownloadURL, listAll, ref } from 'firebase/storage'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { db, storage } from '../../../../../firebase'
+import { Image } from 'antd'
+import React from 'react'
 import Header from '../../../components/header/Header'
 import '../../styles/detailExams.scss'
-import { useNavigate } from 'react-router-dom';
+import useDetailExamsViewModel from '../../viewModel/detailExams.ViewModel'
 
 
 const DetailExams = () => {
-  const navigate = useNavigate()
 
-  const { TextArea } = Input;
-  const { userId } = useParams()
-  const [userData, setUserData] = useState({})
-  const [exams, setExans] = useState([])
-  const [loading, setLoading] = useState(false)
-
-  const obtenerExamenes = async () => {
-    const q = query(collection(db, "usuarios"), where("cedula", "==", userId));
-
-    const querySnapshot2 = await getDocs(q);
-    querySnapshot2.forEach((doc) => {
-      setUserData(doc.data())
-    });
-  }
-
-  const prueba2 = () => {
-    const listRef = ref(storage, `usuarios/${userId}`)
-    const listaImagenes = []
-    listAll(listRef)
-      .then((res) => {
-        res.items.map((item) => {
-          listaImagenes.push(item.fullPath)
-        })
-      })
-      .catch((error) => {
-        // Uh-oh, an error occurred!
-      })
-    let aux = []
-    setTimeout(() => {
-      console.log(listaImagenes)
-      listaImagenes.map((imagen) => {
-        aux.push(getDownloadURL(ref(storage, imagen)))
-      })
-      console.log(aux)
-      Promise.all(aux).then(values => {
-        setExans(values)
-        console.log("values", values)
-        setLoading(true)
-      })
-    }, 2000)
-  }
-
-
-  useEffect(() => {
-    obtenerExamenes()
-    prueba2()
-  }, [])
+  const {navigate ,
+       TextArea , 
+    userId ,
+    userData , 
+    exams ,
+    loading , 
+    observations , 
+    setObservations , 
+    onFinish} =useDetailExamsViewModel();
 
 
   return <>
-    <Header />
+    <Header path={"/review"} redirect={true}/>
     <div className='container-detailExams'>
       <div className='prueba'>
         <div className='container'>
@@ -88,12 +44,12 @@ const DetailExams = () => {
           </div>
           <div className='container-textArea'>
             <p>Observaciones :</p>
-            <TextArea rows={4} className="textArea" />
+            <TextArea rows={4} className="textArea" value={observations} onChange={(e)=>setObservations(e.target.value)}/>
           </div>
           <div className='container-buttons'>
-            <button>Aprobar</button>
-            <button>Rechazar</button>
-            <button  onClick={() => navigate("/review")} className='button-back'>Volver</button>
+            <button onClick={()=>onFinish("aprobados")}>Aprobar</button>
+            <button onClick={()=>onFinish("rechazados")}>Rechazar</button>
+            {/* <button  onClick={() => navigate("/review")} className='button-back'>Volver</button> */}
           </div>
         </div>
       </div>
