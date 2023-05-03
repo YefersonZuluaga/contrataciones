@@ -38,12 +38,15 @@ const useCreateAspirantViewModel = () => {
       .then((snapshot) => console.log(snapshot))
       .catch((err) => console.log(err.message))
 
+    message.success("Aspirante creado exitosamente")
     form.resetFields();
     setListaImagenes([])
     setDisableButton(false)
+    setPhotoProfile([])
   }
 
   const onFinishForm = async (values) => {
+    message.info("Cargando...")
     setDisableButton(true)
     try {
       const coleccionRef = collection(db, 'usuarios')

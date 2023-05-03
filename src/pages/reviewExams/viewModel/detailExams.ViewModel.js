@@ -16,6 +16,7 @@ const useDetailExamsViewModel = () => {
   const [loading, setLoading] = useState(false)
   const [observations, setObservations] = useState("")
   const [disableTextArea, setDisableTextArea] = useState(false)
+  const [photoProfile, setPhotoProfile] = useState("")
 
   const obtenerExamenes = async () => {
     const q = query(collection(db, "usuarios"), where("cedula", "==", userId));
@@ -59,7 +60,7 @@ const useDetailExamsViewModel = () => {
     }
   }
 
-  const prueba2 = () => {
+  const getImages = () => {
     const listRef = ref(storage, `usuarios/${userId}/examenes`)
     const listaImagenes = []
     listAll(listRef)
@@ -86,10 +87,37 @@ const useDetailExamsViewModel = () => {
     }, 1000)
   }
 
+  const getPhotoProfile = () => {
+    const listRef = ref(storage, `usuarios/${userId}/perfil`)
+    const listaImagenes = []
+    listAll(listRef)
+      .then((res) => {
+        res.items.map((item) => {
+          listaImagenes.push(item.fullPath)
+        })
+      })
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+      })
+    let aux = []
+    setTimeout(() => {
+      console.log(listaImagenes)
+      listaImagenes.map((imagen) => {
+        aux.push(getDownloadURL(ref(storage, imagen)))
+      })
+      console.log(aux)
+      Promise.all(aux).then(values => {
+        setPhotoProfile(values[0])
+        console.log("values", values)
+        // setLoading(true)
+      })
+    }, 1000)
+  }
 
   useEffect(() => {
     obtenerExamenes()
-    prueba2()
+    getImages()
+    getPhotoProfile()
   }, [])
 
 
@@ -103,7 +131,8 @@ const useDetailExamsViewModel = () => {
     observations,
     setObservations,
     onFinish,
-    disableTextArea
+    disableTextArea,
+    photoProfile
   }
 }
 

@@ -29,7 +29,6 @@ const useReviewExamsViewModel = () => {
       dataIndex: 'estadoExamenes',
       key: 'estadoExamenes',
       render: (a) => {
-        console.log(a)
         return <p className={a}>{a}</p>
       }
     },
@@ -38,16 +37,34 @@ const useReviewExamsViewModel = () => {
       dataIndex: '',
       key: '',
       render: (a) => {
+        console.log(a)
         return (
-          <button className="button-render" onClick={() => navigate(`/detail-exams/${a.cedula}`)}>
-            Ver examenes
-          </button>
+          <>
+            <button className="button-render" onClick={() => navigate(`/detail-exams/${a.cedula}`)}>
+              Ver examenes
+            </button>
+            {a.estadoExamenes == 'rechazados' ? (
+              <button
+                className="button-render"
+                onClick={() => navigate(`/detail-exams/${a.cedula}`)}
+              >
+                Eliminar
+              </button>
+            ) : (
+              <button
+                className="button-render"
+                onClick={() => navigate(`/detail-exams/${a.cedula}`)}
+              >
+                Continuar Proceso
+              </button>
+            )}
+          </>
         )
       }
     }
   ]
 
-  const prueba = async () => {
+  const getData = async () => {
     let values = await obtenerDatos()
     if (rol == 'supervisor') {
       let aux = values.filter((value) => value.estadoExamenes == 'pendiente')
@@ -59,7 +76,7 @@ const useReviewExamsViewModel = () => {
   }
 
   useEffect(() => {
-    prueba()
+    getData()
   }, [])
 
   return {

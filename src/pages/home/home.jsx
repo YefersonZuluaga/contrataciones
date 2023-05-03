@@ -18,7 +18,7 @@ const Home = () => {
             </button>
             <button onClick={() => navigate('/review')}>
               <FaUserAlt />
-              <p>Empleado</p>
+              <p>Lista Aspirantes</p>
             </button>
           </div>
         ) : (

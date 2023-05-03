@@ -15,7 +15,8 @@ const DetailExams = () => {
     observations,
     setObservations,
     onFinish,
-    disableTextArea
+    disableTextArea,
+    photoProfile
   } = useDetailExamsViewModel()
 
   return (
@@ -24,12 +25,7 @@ const DetailExams = () => {
       <div className="container-detailExams">
         <div className="prueba">
           <div className="container">
-            <Image
-              width={150}
-              className="profile"
-              preview={false}
-              src="https://firebasestorage.googleapis.com/v0/b/contrataci0nes.appspot.com/o/usuarios%2F1005093860%2Fdescarga.jpg?alt=media&token=5a00c079-8fbe-41eb-9338-47426d4866c8"
-            />
+            <Image width={150} className="profile" preview={false} src={photoProfile} />
             <p>{`${userData && userData.nombre} ${userData && userData.apellido}`}</p>
           </div>
           <div className="container-card">

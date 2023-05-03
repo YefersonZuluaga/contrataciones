@@ -30,6 +30,10 @@
             .ant-table-row {
               .ant-table-cell {
                 text-align: center;
+
+                &:nth-child(5n) {
+                  width: 350px;
+                }
               }
             }
           }
@@ -38,7 +42,8 @@
 
       .button-render {
         height: 30px;
-        width: 120px;
+        margin: 0 10px;
+        width: 130px;
         background-color: var(--color-primary);
         border: none;
         border-radius: 20px;
@@ -52,15 +57,15 @@
         }
       }
 
-      .aprobados{
+      .aprobados {
         font-weight: bold;
         color: green;
       }
-      .rechazados{
+      .rechazados {
         font-weight: bold;
         color: red;
       }
-      .pendiente{
+      .pendiente {
         font-weight: bold;
         color: orange;
       }
