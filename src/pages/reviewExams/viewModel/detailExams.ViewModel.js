@@ -17,6 +17,7 @@ const useDetailExamsViewModel = () => {
   const [observations, setObservations] = useState("")
   const [disableTextArea, setDisableTextArea] = useState(false)
   const [photoProfile, setPhotoProfile] = useState("")
+  const [disabledButton , setDisabledButton] = useState(false)
 
   const obtenerExamenes = async () => {
     const q = query(collection(db, "usuarios"), where("cedula", "==", userId));
@@ -31,7 +32,8 @@ const useDetailExamsViewModel = () => {
   }
 
   const onFinish = async (estado) => {
-
+    message.info("cargando...")
+    setDisabledButton(true)
     try {
       const coleccionRef = collection(db, 'usuarios')
       const docRef = doc(coleccionRef, userData.cedula)
@@ -51,6 +53,7 @@ const useDetailExamsViewModel = () => {
         })
         message.success("Aspirante actualizado exitosamente.")
         setTimeout(() => {
+          setDisabledButton(false)
           navigate("/review")
         }, 2000);
       }
@@ -132,7 +135,8 @@ const useDetailExamsViewModel = () => {
     setObservations,
     onFinish,
     disableTextArea,
-    photoProfile
+    photoProfile,
+    disabledButton
   }
 }
 

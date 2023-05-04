@@ -16,7 +16,8 @@ const DetailExams = () => {
     setObservations,
     onFinish,
     disableTextArea,
-    photoProfile
+    photoProfile,
+    disabledButton
   } = useDetailExamsViewModel()
 
   return (
@@ -53,8 +54,8 @@ const DetailExams = () => {
             <div className="container-buttons">
               {userData && userData.estadoExamenes != 'pendiente' ? null : (
                 <>
-                  <button onClick={() => onFinish('aprobados')}>Aprobar</button>
-                  <button onClick={() => onFinish('rechazados')}>Rechazar</button>
+                  <button disabled={disabledButton} onClick={() => onFinish('aprobados')}>Aprobar</button>
+                  <button disabled={disabledButton} onClick={() => onFinish('rechazados')}>Rechazar</button>
                 </>
               )}
             </div>
