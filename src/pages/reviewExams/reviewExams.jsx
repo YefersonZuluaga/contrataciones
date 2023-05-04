@@ -12,7 +12,7 @@ const ReviewExams = () => {
       <Header path={'/home'} redirect={true} />
       <div className="table">
         <h1>Lista Aspirantes</h1>
-        {!loading ? (
+        {loading ? (
           <Spin />
         ) : (
           <Table dataSource={dataUsers} columns={columns} pagination={true} scroll={true} />
