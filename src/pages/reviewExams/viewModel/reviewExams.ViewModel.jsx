@@ -68,6 +68,8 @@ const useReviewExamsViewModel = () => {
     if (rol == 'supervisor') {
       let aux = values.filter((value) => value.estadoExamenes == 'pendiente')
       setDataUsers(aux)
+      setLoading(false)
+
       return
     }
     let aux = values.filter((value) => value.estadoExamenes != 'pendiente')
