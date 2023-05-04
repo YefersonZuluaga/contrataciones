@@ -32,7 +32,7 @@ const Home = () => {
         <div className="bottom">
           <button onClick={() => navigate('/')}>
             <FaDoorClosed />
-            <p>Cerrar sesion</p>
+            <p>Cerrar sesión</p>
           </button>
         </div>
       </div>
