@@ -1,4 +1,4 @@
-import { Image } from 'antd'
+import { Image, Spin } from 'antd'
 import React from 'react'
 import Header from '../../../components/header/Header'
 import '../../styles/detailExams.scss'
@@ -25,14 +25,20 @@ const DetailExams = () => {
       <div className="container-detailExams">
         <div className="prueba">
           <div className="container">
-            <Image width={150} className="profile" preview={false} src={photoProfile} />
-            <p>{`${userData && userData.nombre} ${userData && userData.apellido}`}</p>
+            {loading ? (
+              <>
+                <Image width={150} className="profile" preview={false} src={photoProfile} />
+                <p>{`${userData && userData.nombre} ${userData && userData.apellido}`}</p>
+              </>
+            ) : (
+              <Spin />
+            )}
           </div>
           <div className="container-card">
             <h1>Revisión Examenes Medicos</h1>
             <h3>Identificacion{` ${userData && userData.cedula}`}</h3>
             <div className="container-images">
-              {loading ? exams.map((item) => <Image width={150} src={item} />) : 'Cargando'}
+              {loading ? exams.map((item) => <Image width={150} src={item} />) : <Spin />}
             </div>
             <div className="container-textArea">
               <p>Observaciones :</p>

@@ -4,7 +4,7 @@ import { obtenerDatos } from '../../../hooks/getUsersData'
 
 const useReviewExamsViewModel = () => {
   const [dataUsers, setDataUsers] = useState([])
-
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   const rol = JSON.parse(localStorage.getItem('user')).rol
 
@@ -72,6 +72,9 @@ const useReviewExamsViewModel = () => {
     }
     let aux = values.filter((value) => value.estadoExamenes != 'pendiente')
     setDataUsers(aux)
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
   }
 
   useEffect(() => {
@@ -80,7 +83,8 @@ const useReviewExamsViewModel = () => {
 
   return {
     dataUsers,
-    columns
+    columns,
+    loading
   }
 }
 
