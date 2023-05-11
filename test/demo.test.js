@@ -4,6 +4,6 @@ describe('Prueba <DemoComponent />', () => {
 
     const message2 = message1.trim();
 
-    expect(message1).toBe(message2);
+    expect(message1).toBe("malo");
   })
 })
