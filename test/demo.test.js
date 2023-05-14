@@ -4,7 +4,7 @@ describe('Prueba <DemoComponent />', () => {
 
     const message2 = message1.trim();
 
-    console.log(message13)
+    // console.log(message13)
     expect(message1).toBe(message2);
   })
 })
