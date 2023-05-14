@@ -4,6 +4,13 @@ describe('Prueba <DemoComponent />', () => {
 
     const message2 = message1.trim();
 
-    expect(message1).toBe("malo");
+    console.log(message13)
+    expect(message1).toBe(message2);
   })
 })
+
+// describe("prueba-funciones" , ()=>{
+//   test("prueba 1" , ()=>{
+
+//   })
+// })
