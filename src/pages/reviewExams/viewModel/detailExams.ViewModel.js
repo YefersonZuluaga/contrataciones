@@ -1,9 +1,10 @@
 import { Input, message } from 'antd';
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
-import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { listAll, ref } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { db, storage } from '../../../../firebase';
+import { adaptedArrayImages } from '../../../hooks/adapterArrayImages';
 
 const useDetailExamsViewModel = () => {
 
@@ -77,10 +78,7 @@ const useDetailExamsViewModel = () => {
       })
     let aux = []
     setTimeout(() => {
-      console.log(listaImagenes)
-      listaImagenes.forEach((imagen) => {
-        aux.push(getDownloadURL(ref(storage, imagen)).catch((error) => console.log(error)))
-      })
+      aux = adaptedArrayImages(listaImagenes)
       console.log(aux)
       Promise.all(aux).then(values => {
         setExans(values)
@@ -102,14 +100,15 @@ const useDetailExamsViewModel = () => {
       .catch((error) => {
         // Uh-oh, an error occurred!
       })
-    let aux = []
+    let arrayAux = []
+    console.log(listaImagenes)
     setTimeout(() => {
-      console.log(listaImagenes)
-      listaImagenes.forEach((imagen) => {
-        aux.push(getDownloadURL(ref(storage, imagen)).catch((error) => console.log(error)))
-      })
-      console.log(aux)
-      Promise.all(aux).then(values => {
+      arrayAux = adaptedArrayImages(listaImagenes)
+      // listaImagenes.forEach((imagen) => {
+      //   aux.push(getDownloadURL(ref(storage, imagen)).catch((error) => console.log(error)))
+      // })
+      // console.log(aux)
+      Promise.all(arrayAux).then(values => {
         setPhotoProfile(values[0])
         console.log("values", values)
         // setLoading(true)

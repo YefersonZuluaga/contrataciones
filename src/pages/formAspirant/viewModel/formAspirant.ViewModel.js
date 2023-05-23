@@ -1,9 +1,10 @@
 import { Form, Input, message } from 'antd';
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
-import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { listAll, ref } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { db, storage } from '../../../../firebase';
+import { adaptedArrayImages } from '../../../hooks/adapterArrayImages';
 
 
 const useFormAspirantViewModel = () => {
@@ -63,13 +64,7 @@ const useFormAspirantViewModel = () => {
     }
   }
 
-  const adaptedArrayImages = (listImages) => {
-    let array = []
-    listImages.forEach((imagen) => {
-      array.push(getDownloadURL(ref(storage, imagen)))
-    })
-    return array
-  }
+
 
   const getImages = () => {
     const listRef = ref(storage, `usuarios/${userId}/examenes`)
