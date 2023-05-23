@@ -80,7 +80,7 @@ const useReviewExamsViewModel = () => {
   }
 
   useEffect(() => {
-    getData()
+    getData().catch((error) => console.log(error))
   }, [])
 
   return {
