@@ -13,11 +13,9 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
-global.localStorage = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  clear: jest.fn()
-};
+global.localStorage._proto_.getItem = jest.fn();
+global.localStorage._proto_.setItem = jest.fn();
+global.localStorage._proto_.clear = jest.fn();
 
 describe('Home Component', () => {
   beforeEach(() => {
