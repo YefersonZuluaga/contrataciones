@@ -3,7 +3,9 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router';
 import Home from '../src/pages/home/home.jsx';
+const LocalStorage = require('../local-storage-mock.js');
 
+global.localStorage = new LocalStorage();
 
 const mockNavigate = jest.fn();
 
@@ -13,30 +15,12 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Home Component', () => {
-  let originalLocalStorage;
   beforeEach(() => {
     mockNavigate.mockReset();
-    const mockLocalStorage = {
-      getItem: jest.fn(),
-      setItem: jest.fn(),
-      clear: jest.fn(),
-    };
-    originalLocalStorage = window.localStorage;
-    window.localStorage = mockLocalStorage;
-  });
-
-  afterEach(() => {
-    window.localStorage = originalLocalStorage;
   });
 
   test('debe mostrar los botones correctos para el rol de empleado', () => {
-    window.localStorage.setItem.mockImplementation((key, value) => {
-      window.localStorage[key] = value;
-    });
-    window.localStorage.getItem.mockImplementation((key) => {
-      return window.localStorage[key];
-    });
-    window.localStorage.setItem('user', JSON.stringify({ rol: 'empleado' }));
+    global.localStorage.setItem('user', JSON.stringify({ rol: 'empleado' }));
     const { getByText } = render(<Home />, { wrapper: MemoryRouter });
     const createAspirantButton = getByText('Crear Aspirante');
     const reviewButton = getByText('Lista Aspirantes');
@@ -44,5 +28,43 @@ describe('Home Component', () => {
     expect(reviewButton).toBeInTheDocument();
   });
 
-  // Resto de pruebas...
+  // test('debe mostrar los botones correctos para el rol de supervisor', () => {
+  //   localStorage.setItem('user', JSON.stringify({ rol: 'supervisor' }));
+  //   const { getByText } = render(<Home />, { wrapper: MemoryRouter });
+  //   const pendingReviewButton = getByText('Listado Aspirantes Pendientes');
+  //   expect(pendingReviewButton).toBeInTheDocument();
+  // });
+
+  // test('debe navegar a /create-aspirant cuando se hace clic en el botón Crear Aspirante', () => {
+  //   localStorage.setItem('user', JSON.stringify({ rol: 'empleado' }));
+  //   const { getByText } = render(<Home />, { wrapper: MemoryRouter });
+  //   const button = getByText('Crear Aspirante');
+  //   fireEvent.click(button);
+  //   expect(mockNavigate).toHaveBeenCalledWith('/create-aspirant');
+  // });
+
+  // test('debe navegar a /review cuando se hace clic en el botón Lista Aspirantes', () => {
+  //   localStorage.setItem('user', JSON.stringify({ rol: 'empleado' }));
+  //   const { getByText } = render(<Home />, { wrapper: MemoryRouter });
+  //   const button = getByText('Lista Aspirantes');
+  //   fireEvent.click(button);
+  //   expect(mockNavigate).toHaveBeenCalledWith('/review');
+  // });
+
+  // test('debe navegar a /review cuando se hace clic en el botón Listado Aspirantes Pendientes', () => {
+  //   localStorage.setItem('user', JSON.stringify({ rol: 'supervisor' }));
+  //   const { getByText } = render(<Home />, { wrapper: MemoryRouter });
+  //   const button = getByText('Listado Aspirantes Pendientes');
+  //   fireEvent.click(button);
+  //   expect(mockNavigate).toHaveBeenCalledWith('/review');
+  // });
+
+  // test('debe navegar a / cuando se hace clic en el botón Cerrar sesión', () => {
+  //   localStorage.setItem('user', JSON.stringify({ rol: 'empleado' }));
+  //   const { getByText } = render(<Home />, { wrapper: MemoryRouter });
+  //   const button = getByText('Cerrar sesión');
+  //   fireEvent.click(button);
+  //   expect(mockNavigate).toHaveBeenCalledWith('/');
+  // });
+
 });
