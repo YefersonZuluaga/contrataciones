@@ -79,7 +79,7 @@ const useDetailExamsViewModel = () => {
     setTimeout(() => {
       console.log(listaImagenes)
       listaImagenes.map((imagen) => {
-        aux.push(getDownloadURL(ref(storage, imagen)))
+        aux.push(getDownloadURL(ref(storage, imagen)).catch((error) => console.log(error)))
       })
       console.log(aux)
       Promise.all(aux).then(values => {
@@ -106,7 +106,7 @@ const useDetailExamsViewModel = () => {
     setTimeout(() => {
       console.log(listaImagenes)
       listaImagenes.map((imagen) => {
-        aux.push(getDownloadURL(ref(storage, imagen)))
+        aux.push(getDownloadURL(ref(storage, imagen)).catch((error) => console.log(error)))
       })
       console.log(aux)
       Promise.all(aux).then(values => {
@@ -118,7 +118,7 @@ const useDetailExamsViewModel = () => {
   }
 
   useEffect(() => {
-    obtenerExamenes()
+    obtenerExamenes().catch(((error) => console.log(error)))
     getImages()
     getPhotoProfile()
   }, [])
