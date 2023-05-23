@@ -97,7 +97,7 @@ const useFormAspirantViewModel = () => {
     const listaImagenes = []
     listAll(listRef)
       .then((res) => {
-        res.items.map((item) => {
+        res.items.forEach((item) => {
           listaImagenes.push(item.fullPath)
         })
       })
@@ -107,7 +107,7 @@ const useFormAspirantViewModel = () => {
     let aux = []
     setTimeout(() => {
       console.log(listaImagenes)
-      listaImagenes.map((imagen) => {
+      listaImagenes.forEach((imagen) => {
         aux.push(getDownloadURL(ref(storage, imagen)))
       })
       console.log(aux)
@@ -120,7 +120,7 @@ const useFormAspirantViewModel = () => {
   }
 
   useEffect(() => {
-    obtenerExamenes()
+    obtenerExamenes().catch((error) => console.log(error))
     getImages()
     getPhotoProfile()
   }, [])
