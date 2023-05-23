@@ -63,6 +63,14 @@ const useFormAspirantViewModel = () => {
     }
   }
 
+  const adaptedArrayImages = (listImages) => {
+    let array = []
+    listImages.forEach((imagen) => {
+      array.push(getDownloadURL(ref(storage, imagen)))
+    })
+    return array
+  }
+
   const getImages = () => {
     const listRef = ref(storage, `usuarios/${userId}/examenes`)
     const listaImagenes = []
@@ -78,9 +86,7 @@ const useFormAspirantViewModel = () => {
       })
     let aux = []
     setTimeout(() => {
-      listaImagenes.forEach((imagen) => {
-        aux.push(getDownloadURL(ref(storage, imagen)))
-      })
+      aux = adaptedArrayImages(listaImagenes)
       Promise.all(aux).then(values => {
         setExans(values)
         setLoading(true)
@@ -100,11 +106,9 @@ const useFormAspirantViewModel = () => {
       .catch((error) => {
         // Uh-oh, an error occurred!
       })
-    let aux = []
+    let arrayAux = []
     setTimeout(() => {
-      listaImagenes.forEach((imagen) => {
-        aux.push(getDownloadURL(ref(storage, imagen)))
-      })
+      arrayAux = adaptedArrayImages(listaImagenes)
       Promise.all(aux).then(values => {
         setPhotoProfile(values[0])
         // setLoading(true)
