@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage, } from "firebase/storage";
+// import { getEnv } from './env';
 // const { VITE_URL_APIKEY } = import.meta.env;
 
 
@@ -12,8 +13,9 @@ import { getStorage, } from "firebase/storage";
 
 
 // Your web app's Firebase configuration
+// const key = getEnv();
 const firebaseConfig = {
-  // apiKey: VITE_URL_APIKEY,
+  // apiKey: key,
   apiKey: 'AIzaSyCESrJWBn0YjtYKQAGxQ5spsw3YLSSXgAY',
   // authDomain: "http://localhost:5173/",
   authDomain: "contrataci0nes.firebaseapp.com",
