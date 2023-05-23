@@ -13,7 +13,8 @@ const { VITE_URL_APIKEY } = import.meta.env;
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: VITE_URL_APIKEY,
+  // apiKey: VITE_URL_APIKEY,
+  apiKey: 'AIzaSyCESrJWBn0YjtYKQAGxQ5spsw3YLSSXgAY',
   // authDomain: "http://localhost:5173/",
   authDomain: "contrataci0nes.firebaseapp.com",
   projectId: "contrataci0nes",
