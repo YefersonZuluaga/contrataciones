@@ -64,7 +64,7 @@ const useCreateAspirantViewModel = () => {
         await setDoc(doc(db, 'usuarios', values.cedula), docData).catch((e) => {
           console.log(e)
         })
-        handleSubmit(values.cedula)
+        handleSubmit(values.cedula).catch((error) => console.log(error))
       }
     } catch (erro) {
       console.log(erro)

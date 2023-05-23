@@ -79,14 +79,14 @@ const useFormAspirantViewModel = () => {
       })
     let aux = []
     setTimeout(() => {
-      console.log(listaImagenes)
-      listaImagenes.map((imagen) => {
+      // console.log(listaImagenes)
+      listaImagenes.forEach((imagen) => {
         aux.push(getDownloadURL(ref(storage, imagen)))
       })
-      console.log(aux)
+      // console.log(aux)
       Promise.all(aux).then(values => {
         setExans(values)
-        console.log("values", values)
+        // console.log("values", values)
         setLoading(true)
       })
     }, 1000)
