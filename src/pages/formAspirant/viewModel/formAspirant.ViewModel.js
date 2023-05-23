@@ -1,15 +1,17 @@
-import { Input, message } from 'antd';
+import { Form, Input, message } from 'antd';
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { db, storage } from '../../../../firebase';
 
-const useDetailExamsViewModel = () => {
+
+const useFormAspirantViewModel = () => {
 
   const navigate = useNavigate()
 
   const { TextArea } = Input;
+  const [form] = Form.useForm();
   const { userId } = useParams()
   const [userData, setUserData] = useState({})
   const [exams, setExans] = useState([])
@@ -136,8 +138,9 @@ const useDetailExamsViewModel = () => {
     onFinish,
     disableTextArea,
     photoProfile,
-    disabledButton
+    disabledButton,
+    form
   }
 }
 
-export default useDetailExamsViewModel
+export default useFormAspirantViewModel

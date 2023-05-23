@@ -54,8 +54,12 @@ const DetailExams = () => {
             <div className="container-buttons">
               {userData && userData.estadoExamenes != 'pendiente' ? null : (
                 <>
-                  <button disabled={disabledButton} onClick={() => onFinish('aprobados')}>Aprobar</button>
-                  <button disabled={disabledButton} onClick={() => onFinish('rechazados')}>Rechazar</button>
+                  <button disabled={disabledButton} onClick={() => onFinish('aprobados')}>
+                    Aprobar
+                  </button>
+                  <button disabled={disabledButton} onClick={() => onFinish('rechazados')}>
+                    Rechazar
+                  </button>
                 </>
               )}
             </div>

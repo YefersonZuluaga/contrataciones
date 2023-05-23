@@ -1,0 +1,67 @@
+.container-formAspirant {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .prueba {
+    // background-color: var(--color-primary);
+    background-image: url('https://cdn.pixabay.com/photo/2017/06/14/01/43/background-2400765_1280.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    margin-top: 130px;
+
+    // flex-direction: column;
+    .container {
+      width: 20%;
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      p {
+        color: #fff;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .profile {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 50%;
+        box-shadow: var(--box-shadow);
+      }
+    }
+
+    .container-card {
+      // padding: 20px;
+      // width: 70vw;
+      width: 80%;
+      height: 100%;
+      border-radius: 20px;
+      box-shadow: var(--box-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+
+      & h1 {
+        color: var(--color-primary);
+        text-align: center;
+        margin: 0;
+      }
+
+      & h3 {
+        color: var(--color-primary);
+        margin: 0;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

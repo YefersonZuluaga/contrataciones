@@ -52,7 +52,7 @@ const useReviewExamsViewModel = () => {
             ) : a.estadoExamenes == 'aprobados' ? (
               <button
                 className="button-render"
-                onClick={() => navigate(`/detail-exams/${a.cedula}`)}
+                onClick={() => navigate(`/form-aspirant/${a.cedula}`)}
               >
                 Continuar Proceso
               </button>
