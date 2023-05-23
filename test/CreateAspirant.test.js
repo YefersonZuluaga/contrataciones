@@ -38,6 +38,7 @@ describe('Crear componente de empleado', () => {
     localStorageSpy.mockRestore();
   });
 
+
   test('renderiza sin fallar', () => {
     render(<MemoryRouter><CreateEmployee /></MemoryRouter>);
   });
