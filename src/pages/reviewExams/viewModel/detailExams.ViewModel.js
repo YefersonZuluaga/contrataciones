@@ -78,7 +78,7 @@ const useDetailExamsViewModel = () => {
     let aux = []
     setTimeout(() => {
       console.log(listaImagenes)
-      listaImagenes.map((imagen) => {
+      listaImagenes.forEach((imagen) => {
         aux.push(getDownloadURL(ref(storage, imagen)).catch((error) => console.log(error)))
       })
       console.log(aux)
@@ -105,7 +105,7 @@ const useDetailExamsViewModel = () => {
     let aux = []
     setTimeout(() => {
       console.log(listaImagenes)
-      listaImagenes.map((imagen) => {
+      listaImagenes.forEach((imagen) => {
         aux.push(getDownloadURL(ref(storage, imagen)).catch((error) => console.log(error)))
       })
       console.log(aux)
