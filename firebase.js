@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage, } from "firebase/storage";
-const { VITE_URL_APIKEY } = import.meta.env;
+// const { VITE_URL_APIKEY } = import.meta.env;
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -13,8 +13,8 @@ const { VITE_URL_APIKEY } = import.meta.env;
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: VITE_URL_APIKEY,
-  // apiKey: 'AIzaSyCESrJWBn0YjtYKQAGxQ5spsw3YLSSXgAY',
+  // apiKey: VITE_URL_APIKEY,
+  apiKey: 'AIzaSyCESrJWBn0YjtYKQAGxQ5spsw3YLSSXgAY',
   // authDomain: "http://localhost:5173/",
   authDomain: "contrataci0nes.firebaseapp.com",
   projectId: "contrataci0nes",
