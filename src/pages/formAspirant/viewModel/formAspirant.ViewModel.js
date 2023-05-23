@@ -58,7 +58,7 @@ const useFormAspirantViewModel = () => {
         }, 2000);
       }
     } catch (erro) {
-      console.log(erro)
+      console.error(erro)
       message.warning('ha ocurrido un error.')
     }
   }
@@ -74,6 +74,7 @@ const useFormAspirantViewModel = () => {
       })
       .catch((error) => {
         // Uh-oh, an error occurred!
+        console.error(error)
       })
     let aux = []
     setTimeout(() => {
