@@ -20,24 +20,28 @@ jest.mock('react-router-dom', () => ({
 describe('Home Component', () => {
   let originalLocalStorage;
   beforeEach(() => {
-    originalLocalStorage = global.localStorage;
-    global.localStorage = mockLocalStorage;
     mockNavigate.mockReset();
-    mockLocalStorage.getItem.mockReset();
-    mockLocalStorage.setItem.mockReset();
-    mockLocalStorage.clear.mockReset();
+    Object.defineProperty(window, 'localStorage', {
+      value: {
+        getItem: jest.fn(),
+        setItem: jest.fn(),
+        clear: jest.fn(),
+      },
+      writable: true
+    });
   });
 
   afterEach(() => {
     global.localStorage = originalLocalStorage;
   });
   test('debe mostrar los botones correctos para el rol de empleado', () => {
-    mockLocalStorage.getItem.mockReturnValue(JSON.stringify({ rol: 'empleado' }));
+    window.localStorage.setItem('user', JSON.stringify({ rol: 'empleado' }));
     const { getByText } = render(<Home />, { wrapper: MemoryRouter });
     const createAspirantButton = getByText('Crear Aspirante');
     const reviewButton = getByText('Lista Aspirantes');
     expect(createAspirantButton).toBeInTheDocument();
     expect(reviewButton).toBeInTheDocument();
   });
+
 
 });
