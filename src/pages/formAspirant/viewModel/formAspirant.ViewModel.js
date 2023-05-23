@@ -29,7 +29,6 @@ const useFormAspirantViewModel = () => {
       setUserData(doc.data())
       setObservations(doc.data().observacionExamenes)
       doc.data().estadoExamenes != "pendiente" && setDisableTextArea(true)
-      console.log(doc.data().observacionExamenes)
     });
   }
 
@@ -41,7 +40,6 @@ const useFormAspirantViewModel = () => {
       const docRef = doc(coleccionRef, userData.cedula)
       const docSnapshot = await getDoc(docRef)
       if (!docSnapshot.exists()) {
-        console.log('existe')
       } else {
         const docData = {
           cedula: userData.cedula,
@@ -79,14 +77,11 @@ const useFormAspirantViewModel = () => {
       })
     let aux = []
     setTimeout(() => {
-      // console.log(listaImagenes)
       listaImagenes.forEach((imagen) => {
         aux.push(getDownloadURL(ref(storage, imagen)))
       })
-      // console.log(aux)
       Promise.all(aux).then(values => {
         setExans(values)
-        // console.log("values", values)
         setLoading(true)
       })
     }, 1000)
@@ -106,14 +101,11 @@ const useFormAspirantViewModel = () => {
       })
     let aux = []
     setTimeout(() => {
-      console.log(listaImagenes)
       listaImagenes.forEach((imagen) => {
         aux.push(getDownloadURL(ref(storage, imagen)))
       })
-      console.log(aux)
       Promise.all(aux).then(values => {
         setPhotoProfile(values[0])
-        console.log("values", values)
         // setLoading(true)
       })
     }, 1000)
