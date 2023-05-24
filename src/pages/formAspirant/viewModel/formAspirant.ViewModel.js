@@ -22,20 +22,46 @@ const useFormAspirantViewModel = () => {
   const [photoProfile, setPhotoProfile] = useState("")
   const [disabledButton, setDisabledButton] = useState(false)
 
-  const obtenerExamenes = async () => {
+  const obtenerDatos = async () => {
     const q = query(collection(db, "usuarios"), where("cedula", "==", userId));
 
     const querySnapshot2 = await getDocs(q);
     querySnapshot2.forEach((doc) => {
+      let data = doc.data()
       setUserData(doc.data())
-      setObservations(doc.data().observacionExamenes)
-      doc.data().estadoExamenes != "pendiente" && setDisableTextArea(true)
+      form.setFieldValue('nombre', data.nombre)
+      form.setFieldValue('cedula', data.cedula)
+      form.setFieldValue('apellidos', data.apellido)
+      if (data.registroFormulario) {
+        form.setFieldValue('telefono', data.telefono)
+        form.setFieldValue('direccion', data.direccion)
+        form.setFieldValue('ciudad', data.ciudad)
+        form.setFieldValue('fechaNacimiento', data.fechaNacimiento)
+        form.setFieldValue('email', data.email)
+        form.setFieldValue('rh', data.rh)
+        form.setFieldValue('cargo', data.cargo)
+        form.setFieldValue('salario', data.salario)
+        form.setFieldValue('nivelEducativo', data.nivelEducativo)
+        form.setFieldValue('fondoPension', data.fondoPension)
+        form.setFieldValue('fondoSalud', data.fondoSalud)
+        form.setFieldValue('cajaCompensacion', data.cajaCompensacion)
+        form.setFieldValue('fechaElaboracion', data.fechaElaboracion)
+        form.setFieldValue('inicioContrato', data.inicioContrato)
+        form.setFieldValue('empresa', data.empresa)
+        form.setFieldValue('cargo', data.cargo)
+        form.setFieldValue('salarioExperiencia', data.salarioExperiencia)
+        form.setFieldValue('telefono', data.telefono)
+        form.setFieldValue('jefeInmediato', data.jefeInmediato)
+        form.setFieldValue('motivoRetiro', data.motivoRetiro)
+      }
     });
   }
 
   const onFinish = async (estado) => {
     message.info("cargando...")
     setDisabledButton(true)
+    console.log(estado)
+    // return
     try {
       const coleccionRef = collection(db, 'usuarios')
       const docRef = doc(coleccionRef, userData.cedula)
@@ -43,20 +69,41 @@ const useFormAspirantViewModel = () => {
       if (!docSnapshot.exists()) {
       } else {
         const docData = {
+          estadoExamenes: userData.estadoExamenes,
+          observacionExamenes: userData.observacionExamenes,
           cedula: userData.cedula,
           nombre: userData.nombre,
           apellido: userData.apellido,
-          estadoExamenes: estado,
-          observacionExamenes: observations
+          telefono: estado.telefono,
+          direccion: estado.direccion,
+          ciudad: estado.ciudad,
+          fechaNacimiento: estado.fechaNacimiento,
+          email: estado.email,
+          rh: estado.rh,
+          cargo: estado.cargo,
+          salario: estado.salario,
+          nivelEducativo: estado.nivelEducativo,
+          fondoPension: estado.fondoPension,
+          fondoSalud: estado.fondoSalud,
+          cajaCompensacion: estado.cajaCompensacion,
+          fechaElaboracion: estado.fechaElaboracion,
+          inicioContrato: estado.inicioContrato,
+          empresa: estado.empresa,
+          cargo: estado.cargo,
+          salarioExperiencia: estado.salarioExperiencia,
+          telefono: estado.telefono,
+          jefeInmediato: estado.jefeInmediato,
+          motivoRetiro: estado.motivoRetiro,
+          registroFormulario: true
         }
         await setDoc(doc(db, 'usuarios', userData.cedula), docData).catch((e) => {
           console.log(e)
         })
         message.success("Aspirante actualizado exitosamente.")
-        setTimeout(() => {
-          setDisabledButton(false)
-          navigate("/review")
-        }, 2000);
+        // setTimeout(() => {
+        //   setDisabledButton(false)
+        //   navigate("/review")
+        // }, 2000);
       }
     } catch (erro) {
       console.error(erro)
@@ -104,7 +151,7 @@ const useFormAspirantViewModel = () => {
     let arrayAux = []
     setTimeout(() => {
       arrayAux = adaptedArrayImages(listaImagenes)
-      Promise.all(aux).then(values => {
+      Promise.all(arrayAux).then(values => {
         setPhotoProfile(values[0])
         // setLoading(true)
       })
@@ -112,7 +159,7 @@ const useFormAspirantViewModel = () => {
   }
 
   useEffect(() => {
-    obtenerExamenes().catch((error) => console.log(error))
+    obtenerDatos().catch((error) => console.log(error))
     getImages()
     getPhotoProfile()
   }, [])

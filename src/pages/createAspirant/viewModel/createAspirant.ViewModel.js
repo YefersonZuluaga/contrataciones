@@ -59,7 +59,8 @@ const useCreateAspirantViewModel = () => {
           cedula: values.cedula,
           nombre: values.nombre,
           apellido: values.apellido,
-          estadoExamenes: 'pendiente'
+          estadoExamenes: 'pendiente',
+          registroFormulario: false
         }
         await setDoc(doc(db, 'usuarios', values.cedula), docData).catch((e) => {
           console.log(e)
