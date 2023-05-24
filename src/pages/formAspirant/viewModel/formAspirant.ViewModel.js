@@ -89,9 +89,9 @@ const useFormAspirantViewModel = () => {
           fechaElaboracion: estado.fechaElaboracion,
           inicioContrato: estado.inicioContrato,
           empresa: estado.empresa,
-          cargo: estado.cargo,
+          // cargo: estado.cargo,
           salarioExperiencia: estado.salarioExperiencia,
-          telefono: estado.telefono,
+          // telefono: estado.telefono,
           jefeInmediato: estado.jefeInmediato,
           motivoRetiro: estado.motivoRetiro,
           registroFormulario: true
