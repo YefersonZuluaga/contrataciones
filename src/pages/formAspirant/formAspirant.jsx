@@ -1,5 +1,7 @@
+import { pdf } from '@react-pdf/renderer'
 import { Collapse, Form, Image, Input, Spin } from 'antd'
 import React from 'react'
+import MyDocument from '../../hooks/getPdf'
 import Header from '../components/header/Header'
 import './styles.scss'
 import useFormAspirantViewModel from './viewModel/formAspirant.ViewModel'
@@ -19,8 +21,28 @@ const FormAspirant = () => {
     disableTextArea,
     photoProfile,
     disabledButton,
-    form
+    form,
+    rules
   } = useFormAspirantViewModel()
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo)
+  }
+
+  const prueba = async () => {
+    const blob = await pdf(
+      <MyDocument
+        cargo={'desarrollador jr'}
+        Compañia={'celuweb'}
+        fecha={'2023-12-12'}
+        empleado={'Jose jose'}
+      />
+    ).toBlob()
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'Contrato.pdf'
+    link.click()
+  }
   return (
     <div className="container-formAspirant">
       <Header redirect={true} path={'/review'} />
@@ -45,80 +67,81 @@ const FormAspirant = () => {
               span: 6
             }}
             onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
           >
             <Collapse defaultActiveKey={['1']}>
               <Panel header="Informacion Ciudadano" key="1">
-                <Form.Item label="Cedula" name="cedula">
+                <Form.Item label="Cedula" name="cedula" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Nombre" name="nombre">
+                <Form.Item label="Nombre" name="nombre" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Apellidos" name="apellidos">
+                <Form.Item label="Apellidos" name="apellidos" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Telefono" name="telefono">
+                <Form.Item label="Telefono" name="telefono" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Direccion" name="direccion">
+                <Form.Item label="Direccion" name="direccion" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Ciudad" name="ciudad">
+                <Form.Item label="Ciudad" name="ciudad" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Fecha de nacimientos" name="fechaNacimiento">
+                <Form.Item label="Fecha de nacimientos" name="fechaNacimiento" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Email" name="email">
+                <Form.Item label="Email" name="email" rules={rules}>
                   <Input />
                 </Form.Item>
                 {/* </Panel> */}
                 {/* <Panel header="This is panel header 2" key="2"> */}
-                <Form.Item label="RH" name="rh">
+                <Form.Item label="RH" name="rh" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Cargo" name="cargo">
+                <Form.Item label="Cargo" name="cargo" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Salario" name="salario">
+                <Form.Item label="Salario" name="salario" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Nivel Educativo" name="nivelEducativo">
+                <Form.Item label="Nivel Educativo" name="nivelEducativo" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Fondo Pension" name="fondoPension">
+                <Form.Item label="Fondo Pension" name="fondoPension" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Fondo salud" name="fondoSalud">
+                <Form.Item label="Fondo salud" name="fondoSalud" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Caja compensacion" name="cajaCompensacion">
+                <Form.Item label="Caja compensacion" name="cajaCompensacion" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Fecha Elaboracion" name="fechaElaboracion">
+                <Form.Item label="Fecha Elaboracion" name="fechaElaboracion" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Inicio Contrato" name="inicioContrato">
+                <Form.Item label="Inicio Contrato" name="inicioContrato" rules={rules}>
                   <Input />
                 </Form.Item>
               </Panel>
-              <Panel header="Informacion Laboral" key="3">
-                <Form.Item label="Empresa" name="empresa">
+              <Panel header="Informacion Laboral" key="2">
+                <Form.Item label="Empresa" name="empresa" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Cargo" name="cargo">
+                <Form.Item label="Cargo" name="cargo" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Salario" name="salarioExperiencia">
+                <Form.Item label="Salario" name="salarioExperiencia" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Telefono" name="telefono">
+                <Form.Item label="Telefono" name="telefono" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Jefe Inmediato" name="jefeInmediato">
+                <Form.Item label="Jefe Inmediato" name="jefeInmediato" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Motivo Retiro" name="motivoRetiro">
+                <Form.Item label="Motivo Retiro" name="motivoRetiro" rules={rules}>
                   <Input />
                 </Form.Item>
               </Panel>
@@ -128,7 +151,9 @@ const FormAspirant = () => {
                 {userData.registroFormulario ? 'Actualizar' : 'Registrar'}
               </button>
               {userData.registroFormulario && (
-                <button className="button-register">Generar Contrato</button>
+                <button className="button-register" onClick={prueba}>
+                  Generar Contrato
+                </button>
               )}
             </div>
           </Form>

@@ -10,7 +10,12 @@ import { adaptedArrayImages } from '../../../hooks/adapterArrayImages';
 const useFormAspirantViewModel = () => {
 
   const navigate = useNavigate()
-
+  const rules = [
+    {
+      required: true,
+      message: 'Campo obligatorio!'
+    }
+  ]
   const { TextArea } = Input;
   const [form] = Form.useForm();
   const { userId } = useParams()
@@ -71,9 +76,9 @@ const useFormAspirantViewModel = () => {
         const docData = {
           estadoExamenes: userData.estadoExamenes,
           observacionExamenes: userData.observacionExamenes,
-          cedula: userData.cedula,
-          nombre: userData.nombre,
-          apellido: userData.apellido,
+          cedula: estado.cedula,
+          nombre: estado.nombre,
+          apellido: estado.apellido,
           telefono: estado.telefono,
           direccion: estado.direccion,
           ciudad: estado.ciudad,
@@ -178,7 +183,8 @@ const useFormAspirantViewModel = () => {
     disableTextArea,
     photoProfile,
     disabledButton,
-    form
+    form,
+    rules
   }
 }
 
