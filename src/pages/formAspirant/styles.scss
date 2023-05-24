@@ -62,7 +62,7 @@
       & h3 {
         color: var(--color-primary);
         margin: 0;
-        margin-bottom: 30px;
+        // margin-bottom: 30px;
       }
 
       .form {
@@ -70,6 +70,7 @@
         overflow-y: auto;
         overflow-x: hidden;
         max-height: 65vh;
+        margin-top: 20px;
         &::-webkit-scrollbar {
           width: 5px;
         }

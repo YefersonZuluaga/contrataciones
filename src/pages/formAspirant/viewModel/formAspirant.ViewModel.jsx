@@ -29,6 +29,8 @@ const useFormAspirantViewModel = () => {
   const [centinela, setCentinela] = useState(false)
   const [keys, setKeys] = useState([])
 
+  const [fechaElaboracion, setFechaElaboracion]= useState('')
+
   const obtenerDatos = async () => {
     const q = query(collection(db, 'usuarios'), where('cedula', '==', userId))
 
@@ -55,14 +57,15 @@ const useFormAspirantViewModel = () => {
         form.setFieldValue('fondoPension', data.fondoPension)
         form.setFieldValue('fondoSalud', data.fondoSalud)
         form.setFieldValue('cajaCompensacion', data.cajaCompensacion)
-        form.setFieldValue('fechaElaboracion', data.fechaElaboracion)
-        form.setFieldValue('inicioContrato', data.inicioContrato)
-        // form.setFieldValue('empresa', data.empresa)
+        // form.setFieldValue('fechaElaboracion', data.fechaElaboracion)
+        // form.setFieldValue('inicioContrato', data.inicioContrato)
+        form.setFieldValue('empresa', data.empresa)
         form.setFieldValue('cargo', data.cargo)
         form.setFieldValue('salarioExperiencia', data.salarioExperiencia)
-        form.setFieldValue('telefono', data.telefono)
+        form.setFieldValue('telefonoExperiencia', data.telefonoExperiencia)
         form.setFieldValue('jefeInmediato', data.jefeInmediato)
         form.setFieldValue('motivoRetiro', data.motivoRetiro)
+        form.setFieldValue('cargoExperiencia', data.cargoExperiencia)
         setKeys(['1', '2'])
       }
     })
@@ -97,14 +100,14 @@ const useFormAspirantViewModel = () => {
           fondoPension: estado.fondoPension,
           fondoSalud: estado.fondoSalud,
           cajaCompensacion: estado.cajaCompensacion,
-          fechaElaboracion: estado.fechaElaboracion,
-          inicioContrato: estado.inicioContrato,
-          // empresa: estado.empresa,
-          // cargo: estado.cargo,
+          // fechaElaboracion: estado.fechaElaboracion,
+          // inicioContrato: estado.inicioContrato,
+          empresa: estado.empresa,
           salarioExperiencia: estado.salarioExperiencia,
-          // telefono: estado.telefono,
+          telefonoExperiencia: estado.telefonoExperiencia,
           jefeInmediato: estado.jefeInmediato,
           motivoRetiro: estado.motivoRetiro,
+          cargoExperiencia: estado.cargoExperiencia,
           registroFormulario: true
         }
         await setDoc(doc(db, 'usuarios', userData.cedula), docData).catch((e) => {
@@ -222,7 +225,10 @@ const useFormAspirantViewModel = () => {
     createPDF,
     onFinishFailed,
     onChangeKeys,
-    keys
+    keys,
+    fechaElaboracion,
+    setFechaElaboracion
+
   }
 }
 

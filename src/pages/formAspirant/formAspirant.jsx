@@ -1,4 +1,4 @@
-import { Collapse, Form, Image, Input, Spin } from 'antd'
+import { Collapse, DatePicker, Form, Image, Input, Spin } from 'antd'
 import React from 'react'
 import Header from '../components/header/Header'
 import './styles.scss'
@@ -24,8 +24,17 @@ const FormAspirant = () => {
     createPDF,
     onFinishFailed,
     onChangeKeys,
-    keys
+    keys,
+    fechaElaboracion, 
+    setFechaElaboracion
+    
   } = useFormAspirantViewModel()
+
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+    setFechaElaboracion(dateString);
+  };
+
 
   return (
     <div className="container-formAspirant">
@@ -44,6 +53,8 @@ const FormAspirant = () => {
         <div className="container-card">
           <h1>Datos Aspirante</h1>
           <h3>Identificacion{` ${userData && userData.cedula}`}</h3>
+          <h3>Fecha Elaboracion      <DatePicker  onChange={onChange} />
+          Inicio Contrato     <DatePicker onChange={onChange} /></h3>
           <Form
             className="form"
             form={form}
@@ -102,24 +113,24 @@ const FormAspirant = () => {
                 <Form.Item label="Caja compensacion" name="cajaCompensacion" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Fecha Elaboracion" name="fechaElaboracion" rules={rules}>
+                {/* <Form.Item label="Fecha Elaboracion" name="fechaElaboracion" rules={rules}>
                   <Input />
                 </Form.Item>
                 <Form.Item label="Inicio Contrato" name="inicioContrato" rules={rules}>
                   <Input />
-                </Form.Item>
-              </Panel>
-              <Panel header="Informacion Laboral" key="2">
-                {/* <Form.Item label="Empresa" name="empresa" rules={rules}>
-                  <Input />
                 </Form.Item> */}
-                <Form.Item label="prueba" name="prueba" style={{ display: 'none' }}>
+              </Panel>
+              <Panel header="Experiencia Laboral" key="2">
+                 <Form.Item label="Empresa" name="empresa" rules={rules}>
                   <Input />
-                </Form.Item>
+                </Form.Item> 
+                <Form.Item label="Cargo" name="cargoExperiencia" rules={rules}>
+                  <Input />
+                </Form.Item> 
                 <Form.Item label="Salario Experiencia" name="salarioExperiencia" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Telefono" name="telefono" rules={rules}>
+                <Form.Item label="Telefono" name="telefonoExperiencia" rules={rules}>
                   <Input />
                 </Form.Item>
                 <Form.Item label="Jefe Inmediato" name="jefeInmediato" rules={rules}>
