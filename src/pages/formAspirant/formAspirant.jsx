@@ -1,7 +1,5 @@
-import { pdf } from '@react-pdf/renderer'
 import { Collapse, Form, Image, Input, Spin } from 'antd'
 import React from 'react'
-import MyDocument from '../../hooks/getPdf'
 import Header from '../components/header/Header'
 import './styles.scss'
 import useFormAspirantViewModel from './viewModel/formAspirant.ViewModel'
@@ -22,27 +20,13 @@ const FormAspirant = () => {
     photoProfile,
     disabledButton,
     form,
-    rules
+    rules,
+    createPDF,
+    onFinishFailed,
+    onChangeKeys,
+    keys
   } = useFormAspirantViewModel()
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
 
-  const prueba = async () => {
-    const blob = await pdf(
-      <MyDocument
-        cargo={'desarrollador jr'}
-        Compañia={'celuweb'}
-        fecha={'2023-12-12'}
-        empleado={'Jose jose'}
-      />
-    ).toBlob()
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'Contrato.pdf'
-    link.click()
-  }
   return (
     <div className="container-formAspirant">
       <Header redirect={true} path={'/review'} />
@@ -69,10 +53,10 @@ const FormAspirant = () => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-            <Collapse defaultActiveKey={['1']}>
+            <Collapse onChange={onChangeKeys} activeKey={keys}>
               <Panel header="Informacion Ciudadano" key="1">
                 <Form.Item label="Cedula" name="cedula" rules={rules}>
-                  <Input />
+                  <Input disabled={true} />
                 </Form.Item>
                 <Form.Item label="Nombre" name="nombre" rules={rules}>
                   <Input />
@@ -126,13 +110,13 @@ const FormAspirant = () => {
                 </Form.Item>
               </Panel>
               <Panel header="Informacion Laboral" key="2">
-                <Form.Item label="Empresa" name="empresa" rules={rules}>
+                {/* <Form.Item label="Empresa" name="empresa" rules={rules}>
+                  <Input />
+                </Form.Item> */}
+                <Form.Item label="prueba" name="prueba" style={{ display: 'none' }}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Cargo" name="cargo" rules={rules}>
-                  <Input />
-                </Form.Item>
-                <Form.Item label="Salario" name="salarioExperiencia" rules={rules}>
+                <Form.Item label="Salario Experiencia" name="salarioExperiencia" rules={rules}>
                   <Input />
                 </Form.Item>
                 <Form.Item label="Telefono" name="telefono" rules={rules}>
@@ -151,7 +135,7 @@ const FormAspirant = () => {
                 {userData.registroFormulario ? 'Actualizar' : 'Registrar'}
               </button>
               {userData.registroFormulario && (
-                <button className="button-register" onClick={prueba}>
+                <button className="button-register" onClick={createPDF}>
                   Generar Contrato
                 </button>
               )}

@@ -70,15 +70,27 @@
         overflow-y: auto;
         overflow-x: hidden;
         max-height: 65vh;
+        &::-webkit-scrollbar {
+          width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+          background: #bdb5b4;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #716e6e;
+          border-radius: 10px;
+        }
         .container-button {
           margin-top: 25px;
           padding: 10px;
           width: 100%;
           display: flex;
           justify-content: center;
+          gap: 20px;
           button {
             height: 35px;
-            width: 300px;
+            width: 200px;
             // margin: 0 auto;
             background-color: var(--color-primary);
             box-shadow: var(--box-shadow);

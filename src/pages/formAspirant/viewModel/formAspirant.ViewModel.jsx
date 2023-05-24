@@ -1,14 +1,14 @@
-import { Form, Input, message } from 'antd';
-import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
-import { listAll, ref } from 'firebase/storage';
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { db, storage } from '../../../../firebase';
-import { adaptedArrayImages } from '../../../hooks/adapterArrayImages';
-
+import { pdf } from '@react-pdf/renderer'
+import { Form, Input, message } from 'antd'
+import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore'
+import { listAll, ref } from 'firebase/storage'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { db, storage } from '../../../../firebase'
+import { adaptedArrayImages } from '../../../hooks/adapterArrayImages'
+import MyDocument from '../../../hooks/getPdf'
 
 const useFormAspirantViewModel = () => {
-
   const navigate = useNavigate()
   const rules = [
     {
@@ -16,28 +16,33 @@ const useFormAspirantViewModel = () => {
       message: 'Campo obligatorio!'
     }
   ]
-  const { TextArea } = Input;
-  const [form] = Form.useForm();
+  const { TextArea } = Input
+  const [form] = Form.useForm()
   const { userId } = useParams()
   const [userData, setUserData] = useState({})
   const [exams, setExans] = useState([])
   const [loading, setLoading] = useState(false)
-  const [observations, setObservations] = useState("")
+  const [observations, setObservations] = useState('')
   const [disableTextArea, setDisableTextArea] = useState(false)
-  const [photoProfile, setPhotoProfile] = useState("")
+  const [photoProfile, setPhotoProfile] = useState('')
   const [disabledButton, setDisabledButton] = useState(false)
+  const [centinela, setCentinela] = useState(false)
+  const [keys, setKeys] = useState([])
 
   const obtenerDatos = async () => {
-    const q = query(collection(db, "usuarios"), where("cedula", "==", userId));
+    const q = query(collection(db, 'usuarios'), where('cedula', '==', userId))
 
-    const querySnapshot2 = await getDocs(q);
+    const querySnapshot2 = await getDocs(q)
     querySnapshot2.forEach((doc) => {
       let data = doc.data()
+      console.log(data)
       setUserData(doc.data())
       form.setFieldValue('nombre', data.nombre)
       form.setFieldValue('cedula', data.cedula)
       form.setFieldValue('apellidos', data.apellido)
+      setKeys(['1'])
       if (data.registroFormulario) {
+        setUserData(doc.data())
         form.setFieldValue('telefono', data.telefono)
         form.setFieldValue('direccion', data.direccion)
         form.setFieldValue('ciudad', data.ciudad)
@@ -52,20 +57,21 @@ const useFormAspirantViewModel = () => {
         form.setFieldValue('cajaCompensacion', data.cajaCompensacion)
         form.setFieldValue('fechaElaboracion', data.fechaElaboracion)
         form.setFieldValue('inicioContrato', data.inicioContrato)
-        form.setFieldValue('empresa', data.empresa)
+        // form.setFieldValue('empresa', data.empresa)
         form.setFieldValue('cargo', data.cargo)
         form.setFieldValue('salarioExperiencia', data.salarioExperiencia)
         form.setFieldValue('telefono', data.telefono)
         form.setFieldValue('jefeInmediato', data.jefeInmediato)
         form.setFieldValue('motivoRetiro', data.motivoRetiro)
+        setKeys(['1', '2'])
       }
-    });
+    })
   }
 
   const onFinish = async (estado) => {
-    message.info("cargando...")
+    message.info('cargando...')
     setDisabledButton(true)
-    console.log(estado)
+    console.log(estado.salarioExperiencia)
     // return
     try {
       const coleccionRef = collection(db, 'usuarios')
@@ -78,7 +84,7 @@ const useFormAspirantViewModel = () => {
           observacionExamenes: userData.observacionExamenes,
           cedula: estado.cedula,
           nombre: estado.nombre,
-          apellido: estado.apellido,
+          apellido: estado.apellidos,
           telefono: estado.telefono,
           direccion: estado.direccion,
           ciudad: estado.ciudad,
@@ -93,7 +99,7 @@ const useFormAspirantViewModel = () => {
           cajaCompensacion: estado.cajaCompensacion,
           fechaElaboracion: estado.fechaElaboracion,
           inicioContrato: estado.inicioContrato,
-          empresa: estado.empresa,
+          // empresa: estado.empresa,
           // cargo: estado.cargo,
           salarioExperiencia: estado.salarioExperiencia,
           // telefono: estado.telefono,
@@ -104,7 +110,8 @@ const useFormAspirantViewModel = () => {
         await setDoc(doc(db, 'usuarios', userData.cedula), docData).catch((e) => {
           console.log(e)
         })
-        message.success("Aspirante actualizado exitosamente.")
+        message.success('Aspirante actualizado exitosamente.')
+        setCentinela(!centinela)
         // setTimeout(() => {
         //   setDisabledButton(false)
         //   navigate("/review")
@@ -115,8 +122,6 @@ const useFormAspirantViewModel = () => {
       message.warning('ha ocurrido un error.')
     }
   }
-
-
 
   const getImages = () => {
     const listRef = ref(storage, `usuarios/${userId}/examenes`)
@@ -134,7 +139,7 @@ const useFormAspirantViewModel = () => {
     let aux = []
     setTimeout(() => {
       aux = adaptedArrayImages(listaImagenes)
-      Promise.all(aux).then(values => {
+      Promise.all(aux).then((values) => {
         setExans(values)
         setLoading(true)
       })
@@ -156,19 +161,48 @@ const useFormAspirantViewModel = () => {
     let arrayAux = []
     setTimeout(() => {
       arrayAux = adaptedArrayImages(listaImagenes)
-      Promise.all(arrayAux).then(values => {
+      Promise.all(arrayAux).then((values) => {
         setPhotoProfile(values[0])
         // setLoading(true)
       })
     }, 1000)
   }
 
+  const createPDF = async () => {
+    const blob = await pdf(
+      <MyDocument
+        cargo={'desarrollador jr'}
+        Compañia={'celuweb'}
+        fecha={'2023-12-12'}
+        empleado={'Jose jose'}
+      />
+    ).toBlob()
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `Contrato-${userId}.pdf`
+    link.click()
+  }
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo)
+    message.warning('Faltan campos por llenar')
+  }
+
+  const onChangeKeys = (key) => {
+    console.log(key)
+    setKeys(key)
+    let index = keys.indexOf(key)
+    // if (index == -1) {
+    //   setKeys([...keys, key])
+    // }
+    // console.log(index)
+  }
   useEffect(() => {
     obtenerDatos().catch((error) => console.log(error))
     getImages()
     getPhotoProfile()
-  }, [])
-
+  }, [centinela])
 
   return {
     navigate,
@@ -184,7 +218,11 @@ const useFormAspirantViewModel = () => {
     photoProfile,
     disabledButton,
     form,
-    rules
+    rules,
+    createPDF,
+    onFinishFailed,
+    onChangeKeys,
+    keys
   }
 }
 
