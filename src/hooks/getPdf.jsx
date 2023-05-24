@@ -68,7 +68,7 @@ const MyDocument = ({ Compañia, empleado, fecha, cargo }) => (
         <View style={styles.row}>
           <View style={styles.cell}>
             <Text style={styles.textTable}>NOMBRE TRABAJADOR</Text>
-            <Text style={styles.textTable}>JULIANA</Text>
+            <Text style={styles.textTable}>{empleado}</Text>
           </View>
           <View style={styles.cell}>
             <Text style={styles.textTable}>DIRECCION TRABAJADOR</Text>

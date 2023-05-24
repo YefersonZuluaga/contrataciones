@@ -146,7 +146,7 @@ const FormAspirant = () => {
                 {userData.registroFormulario ? 'Actualizar' : 'Registrar'}
               </button>
               {userData.registroFormulario && (
-                <button className="button-register" onClick={createPDF}>
+                <button type="button" className="button-register" onClick={createPDF}>
                   Generar Contrato
                 </button>
               )}

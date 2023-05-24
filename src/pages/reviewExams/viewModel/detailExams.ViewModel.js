@@ -97,9 +97,7 @@ const useDetailExamsViewModel = () => {
           listaImagenes.push(item.fullPath)
         })
       })
-      .catch((error) => {
-        // Uh-oh, an error occurred!
-      })
+      
     let arrayAux = []
     console.log(listaImagenes)
     setTimeout(() => {
@@ -117,7 +115,7 @@ const useDetailExamsViewModel = () => {
   }
 
   useEffect(() => {
-    obtenerExamenes().catch(((error) => console.log(error)))
+    obtenerExamenes()
     getImages()
     getPhotoProfile()
   }, [])

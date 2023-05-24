@@ -175,9 +175,9 @@ const useFormAspirantViewModel = () => {
     const blob = await pdf(
       <MyDocument
         cargo={'desarrollador jr'}
-        Compañia={'celuweb'}
+        Compañia={userData.empresa}
         fecha={'2023-12-12'}
-        empleado={'Jose jose'}
+        empleado={`${userData.nombre} ${userData.apellido}`}
       />
     ).toBlob()
     const url = URL.createObjectURL(blob)

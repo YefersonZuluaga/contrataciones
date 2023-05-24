@@ -3,7 +3,7 @@ import { storage } from '../../firebase'
 
 export const adaptedArrayImages = (listImages) => {
   let array = []
-  listImages.forEach((imagen) => {
+  listImages.map((imagen) => {
     array.push(getDownloadURL(ref(storage, imagen)))
   })
   return array
