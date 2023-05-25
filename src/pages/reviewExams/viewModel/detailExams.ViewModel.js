@@ -97,25 +97,22 @@ const useDetailExamsViewModel = () => {
           listaImagenes.push(item.fullPath)
         })
       })
-      
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+      })
     let arrayAux = []
     console.log(listaImagenes)
     setTimeout(() => {
       arrayAux = adaptedArrayImages(listaImagenes)
-      // listaImagenes.forEach((imagen) => {
-      //   aux.push(getDownloadURL(ref(storage, imagen)).catch((error) => console.log(error)))
-      // })
-      // console.log(aux)
       Promise.all(arrayAux).then(values => {
         setPhotoProfile(values[0])
         console.log("values", values)
-        // setLoading(true)
       })
     }, 1000)
   }
 
   useEffect(() => {
-    obtenerExamenes()
+    obtenerExamenes().catch(((error) => console.log(error)))
     getImages()
     getPhotoProfile()
   }, [])
