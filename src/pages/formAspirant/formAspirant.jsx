@@ -29,7 +29,7 @@ const FormAspirant = () => {
     setFechaElaboracion
   } = useFormAspirantViewModel()
 
-  const [prueba , setPrueba ] = useState('lunes, 29 de may de 2023')
+  const [prueba, setPrueba] = useState('lunes, 29 de may de 2023')
 
   const onChange = (date, dateString) => {
     console.log(date, dateString)
@@ -71,7 +71,7 @@ const FormAspirant = () => {
           <h1>Datos Aspirante</h1>
           <h3>Identificacion{` ${userData && userData.cedula}`}</h3>
           <h3>
-            Fecha Elaboracion <DatePicker onChange={onChange} defaultValue={}/>
+            Fecha Elaboracion <DatePicker onChange={onChange} />
             Inicio Contrato <DatePicker onChange={onChange} />
           </h3>
           <Form
