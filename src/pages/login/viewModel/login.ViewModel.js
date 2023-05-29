@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../../../firebase';
 
@@ -27,6 +27,13 @@ const useLoginViewModel = () => {
     });
     centinela && message.warning("usuario o contraseña incorrecta")
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      navigate('/home')
+    }
+  }, [])
+
 
 
   return {

@@ -6,6 +6,11 @@ import './index.scss'
 const Home = () => {
   const navigate = useNavigate()
   const rol = JSON.parse(localStorage.getItem('user')).rol
+
+  const logout = () => {
+    localStorage.removeItem('user')
+    navigate('/')
+  }
   return (
     <div className="container-home">
       <Header path={'/review'} redirect={false} />
@@ -30,7 +35,7 @@ const Home = () => {
           </div>
         )}
         <div className="bottom">
-          <button onClick={() => navigate('/')}>
+          <button onClick={logout}>
             <FaDoorClosed />
             <p>Cerrar sesión</p>
           </button>

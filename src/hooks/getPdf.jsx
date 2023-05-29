@@ -98,7 +98,7 @@ const MyDocument = ({ Compañia, empleado, fecha, cargo }) => (
         {/* Agrega más filas como estas según sea necesario */}
       </View>
       <Text style={styles.text}>
-        Entre EL EMPLEADOR y EL TREBAJADOR, de las condiciones ya dichas, identificados como aparece
+        Entre EL EMPLEADOR y EL TRABAJADOR, de las condiciones ya dichas, identificados como aparece
         al pie de sus firmas, se ha celebrado el presente contrato individual de trabajo, regido
         además por las siguientes cláusulas:
       </Text>

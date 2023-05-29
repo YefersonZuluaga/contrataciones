@@ -33,17 +33,30 @@ const CreateAspirant = () => {
                 }}
                 onFinish={onFinishForm}
               >
-                <Form.Item label="Identificacion" name="cedula">
+                <Form.Item
+                  label="Identificacion"
+                  name="cedula"
+                  rules={[{ required: true, message: 'Identificacion obligatoria!' }]}
+                >
                   <Input />
                 </Form.Item>
-                <Form.Item label="Nombre" name="nombre">
+                <Form.Item
+                  label="Nombre"
+                  name="nombre"
+                  rules={[{ required: true, message: 'Nombre obligatorio!' }]}
+                >
                   <Input />
                 </Form.Item>
-                <Form.Item label="Apellido" name="apellido">
+                <Form.Item
+                  label="Apellido"
+                  name="apellido"
+                  rules={[{ required: true, message: 'Apellido obligatorio!' }]}
+                >
                   <Input />
                 </Form.Item>
                 <Form.Item label="Foto Aspirante" valuePropName="fileList">
                   <Upload
+                    accept="image/png, image/jpeg, image/jpg"
                     action="/upload.do"
                     listType="picture-card"
                     beforeUpload={() => false}
@@ -66,6 +79,7 @@ const CreateAspirant = () => {
                 </Form.Item>
                 <Form.Item label="Examenes medicos" valuePropName="fileList">
                   <Upload
+                    accept="image/png, image/jpeg, image/jpg"
                     action="/upload.do"
                     listType="picture-card"
                     beforeUpload={() => false}

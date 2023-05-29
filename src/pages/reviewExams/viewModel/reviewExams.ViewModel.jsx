@@ -1,5 +1,7 @@
+import { deleteDoc, doc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { db } from '../../../../firebase'
 import { obtenerDatos } from '../../../hooks/getUsersData'
 
 const useReviewExamsViewModel = () => {
@@ -8,6 +10,10 @@ const useReviewExamsViewModel = () => {
   const navigate = useNavigate()
   const rol = JSON.parse(localStorage.getItem('user')).rol
 
+  const deleteAspirant = async (cedula) => {
+    await deleteDoc(doc(db, 'usuarios', cedula))
+    getData().catch((error) => console.log(error))
+  }
   const columns = [
     {
       title: 'Cedula',
@@ -43,10 +49,7 @@ const useReviewExamsViewModel = () => {
               Ver examenes
             </button>
             {a.estadoExamenes == 'rechazados' ? (
-              <button
-                className="button-render"
-                onClick={() => navigate(`/detail-exams/${a.cedula}`)}
-              >
+              <button className="button-render" onClick={() => deleteAspirant(a.cedula)}>
                 Eliminar
               </button>
             ) : a.estadoExamenes == 'aprobados' ? (

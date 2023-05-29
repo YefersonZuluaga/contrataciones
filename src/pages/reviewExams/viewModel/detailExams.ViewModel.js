@@ -47,7 +47,7 @@ const useDetailExamsViewModel = () => {
           nombre: userData.nombre,
           apellido: userData.apellido,
           estadoExamenes: estado,
-          observacionExamenes: observations
+          observacionExamenes: observations ? observations : ''
         }
         await setDoc(doc(db, 'usuarios', userData.cedula), docData).catch((e) => {
           console.log(e)

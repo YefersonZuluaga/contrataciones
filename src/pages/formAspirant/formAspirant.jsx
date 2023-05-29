@@ -1,5 +1,5 @@
 import { Collapse, DatePicker, Form, Image, Input, Spin } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/header/Header'
 import './styles.scss'
 import useFormAspirantViewModel from './viewModel/formAspirant.ViewModel'
@@ -25,16 +25,33 @@ const FormAspirant = () => {
     onFinishFailed,
     onChangeKeys,
     keys,
-    fechaElaboracion, 
+    fechaElaboracion,
     setFechaElaboracion
-    
   } = useFormAspirantViewModel()
 
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
-    setFechaElaboracion(dateString);
-  };
+  const [prueba , setPrueba ] = useState('lunes, 29 de may de 2023')
 
+  const onChange = (date, dateString) => {
+    console.log(date, dateString)
+    setFechaElaboracion(dateString)
+    handleFecha(date)
+  }
+
+  const handleFecha = (date) => {
+    const opciones = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    }
+    let fecha = new Date(date).toLocaleDateString('es-ES', opciones)
+    console.log(fecha)
+    // setFecha(fecha)
+
+    // setFechaDate(date) //-----------------
+
+    // setPersistencia(date, 'fecha')
+  }
 
   return (
     <div className="container-formAspirant">
@@ -53,8 +70,10 @@ const FormAspirant = () => {
         <div className="container-card">
           <h1>Datos Aspirante</h1>
           <h3>Identificacion{` ${userData && userData.cedula}`}</h3>
-          <h3>Fecha Elaboracion      <DatePicker  onChange={onChange} />
-          Inicio Contrato     <DatePicker onChange={onChange} /></h3>
+          <h3>
+            Fecha Elaboracion <DatePicker onChange={onChange} defaultValue={}/>
+            Inicio Contrato <DatePicker onChange={onChange} />
+          </h3>
           <Form
             className="form"
             form={form}
@@ -121,12 +140,12 @@ const FormAspirant = () => {
                 </Form.Item> */}
               </Panel>
               <Panel header="Experiencia Laboral" key="2">
-                 <Form.Item label="Empresa" name="empresa" rules={rules}>
+                <Form.Item label="Empresa" name="empresa" rules={rules}>
                   <Input />
-                </Form.Item> 
+                </Form.Item>
                 <Form.Item label="Cargo" name="cargoExperiencia" rules={rules}>
                   <Input />
-                </Form.Item> 
+                </Form.Item>
                 <Form.Item label="Salario Experiencia" name="salarioExperiencia" rules={rules}>
                   <Input />
                 </Form.Item>

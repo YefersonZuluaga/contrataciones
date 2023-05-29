@@ -46,6 +46,21 @@ const useCreateAspirantViewModel = () => {
   }
 
   const onFinishForm = async (values) => {
+
+    if (!(/^[0-9]+$/.test(values.cedula))) {
+      message.warning('La identificacion debe ser numerica.')
+      form.setFieldValue('cedula', '')
+      return
+    }
+    if (listaImagenes.length == 0) {
+      message.warning('Por favor subir examenes medicos.')
+      return
+    }
+    if (photoProfile == undefined || photoProfile.length == 0) {
+      message.warning('Por favor subir una foto de perfil.')
+      return
+    }
+
     message.info("Cargando...")
     setDisableButton(true)
     try {
@@ -54,6 +69,8 @@ const useCreateAspirantViewModel = () => {
       const docSnapshot = await getDoc(docRef)
       if (docSnapshot.exists()) {
         console.log('existe')
+        message.warning("Cedula ya registrada.")
+        setDisableButton(false)
       } else {
         const docData = {
           cedula: values.cedula,
