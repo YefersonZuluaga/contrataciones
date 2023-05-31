@@ -45,19 +45,45 @@ const useCreateAspirantViewModel = () => {
     setPhotoProfile([])
   }
 
+  function getFileExtension2(filename) {
+    return filename.split('.').pop();
+  }
+
+  const formatos = ['jpg', 'jpeg', 'png']
   const onFinishForm = async (values) => {
 
+    console.log(photoProfile)
+    // console.log()
+
+
     if (!(/^[0-9]+$/.test(values.cedula))) {
-      message.warning('La identificacion debe ser numerica.')
+      message.warning('La identificación debe ser numerica.')
       form.setFieldValue('cedula', '')
       return
     }
     if (listaImagenes.length == 0) {
-      message.warning('Por favor subir examenes medicos.')
+      message.warning('Por favor subir exámenes médicos.')
       return
     }
     if (photoProfile == undefined || photoProfile.length == 0) {
       message.warning('Por favor subir una foto de perfil.')
+      return
+    }
+    if (!(formatos.includes(getFileExtension2(photoProfile[0].name)))) {
+      message.warning('La foto debe ser en formato png, jpeg o png')
+      return
+    }
+    let centinelaExamenes = false;
+
+    listaImagenes.forEach((item) => {
+      console.log(item)
+      console.log(!(formatos.includes(getFileExtension2(item.name))))
+      if (!(formatos.includes(getFileExtension2(item.name)))) {
+        centinelaExamenes = true
+      }
+    })
+    if (centinelaExamenes) {
+      message.warning('Los exámenes médicos deben ser en formato png, jpeg o png')
       return
     }
 
@@ -69,7 +95,7 @@ const useCreateAspirantViewModel = () => {
       const docSnapshot = await getDoc(docRef)
       if (docSnapshot.exists()) {
         console.log('existe')
-        message.warning("Cedula ya registrada.")
+        message.warning("Cédula ya registrada.")
         setDisableButton(false)
       } else {
         const docData = {

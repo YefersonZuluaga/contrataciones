@@ -36,8 +36,8 @@ const DetailExams = () => {
             )}
           </div>
           <div className="container-card">
-            <h1>Revisión Examenes Medicos</h1>
-            <h3>Identificacion{` ${userData && userData.cedula}`}</h3>
+            <h1>Revisión Exámenes Médicos</h1>
+            <h3>Identificación{` ${userData && userData.cedula}`}</h3>
             <div className="container-images">
               {loading ? exams.map((item) => <Image width={150} src={item} />) : <Spin />}
             </div>

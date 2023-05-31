@@ -71,9 +71,9 @@ const FormAspirant = () => {
         </div>
         <div className="container-card">
           <h1>Datos Aspirante</h1>
-          <h3>Identificacion{` ${userData && userData.cedula}`}</h3>
+          <h3>Identificación{` ${userData && userData.cedula}`}</h3>
           <h3>
-            Fecha Elaboracion <DatePicker onChange={onChange} />
+            Fecha Elaboración <DatePicker onChange={onChange} />
             Inicio Contrato <DatePicker onChange={onChange} />
           </h3>
           <Form
@@ -86,8 +86,8 @@ const FormAspirant = () => {
             onFinishFailed={onFinishFailed}
           >
             <Collapse onChange={onChangeKeys} activeKey={keys}>
-              <Panel header="Informacion Ciudadano" key="1">
-                <Form.Item label="Cedula" name="cedula" rules={rules}>
+              <Panel header="Información Ciudadano" key="1">
+                <Form.Item label="Cédula" name="cedula" rules={rules}>
                   <Input disabled={true} />
                 </Form.Item>
                 <Form.Item label="Nombre" name="nombre" rules={rules}>
@@ -96,16 +96,16 @@ const FormAspirant = () => {
                 <Form.Item label="Apellidos" name="apellidos" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Telefono" name="telefono" rules={rules}>
+                <Form.Item label="Teléfono" name="telefono" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Direccion" name="direccion" rules={rules}>
+                <Form.Item label="Dirección" name="direccion" rules={rules}>
                   <Input />
                 </Form.Item>
                 <Form.Item label="Ciudad" name="ciudad" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Fecha de nacimientos" name="fechaNacimiento" rules={rules}>
+                <Form.Item label="Fecha de nacimiento" name="fechaNacimiento" rules={rules}>
                   <Input />
                 </Form.Item>
                 <Form.Item label="Email" name="email" rules={rules}>
@@ -125,13 +125,13 @@ const FormAspirant = () => {
                 <Form.Item label="Nivel Educativo" name="nivelEducativo" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Fondo Pension" name="fondoPension" rules={rules}>
+                <Form.Item label="Fondo Pensión" name="fondoPension" rules={rules}>
                   <Input />
                 </Form.Item>
                 <Form.Item label="Fondo salud" name="fondoSalud" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Caja compensacion" name="cajaCompensacion" rules={rules}>
+                <Form.Item label="Caja compensación" name="cajaCompensacion" rules={rules}>
                   <Input />
                 </Form.Item>
                 {/* <Form.Item label="Fecha Elaboracion" name="fechaElaboracion" rules={rules}>
@@ -151,7 +151,7 @@ const FormAspirant = () => {
                 <Form.Item label="Salario Experiencia" name="salarioExperiencia" rules={rules}>
                   <Input />
                 </Form.Item>
-                <Form.Item label="Telefono" name="telefonoExperiencia" rules={rules}>
+                <Form.Item label="Teléfono" name="telefonoExperiencia" rules={rules}>
                   <Input />
                 </Form.Item>
                 <Form.Item label="Jefe Inmediato" name="jefeInmediato" rules={rules}>

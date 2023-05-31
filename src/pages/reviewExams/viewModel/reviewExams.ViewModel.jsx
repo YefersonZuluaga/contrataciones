@@ -16,7 +16,7 @@ const useReviewExamsViewModel = () => {
   }
   const columns = [
     {
-      title: 'Cedula',
+      title: 'Cédula',
       dataIndex: 'cedula',
       key: 'cedula'
     },
@@ -46,7 +46,7 @@ const useReviewExamsViewModel = () => {
         return (
           <>
             <button className="button-render" onClick={() => navigate(`/detail-exams/${a.cedula}`)}>
-              Ver examenes
+              Ver exámenes
             </button>
             {a.estadoExamenes == 'rechazados' ? (
               <button className="button-render" onClick={() => deleteAspirant(a.cedula)}>

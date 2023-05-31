@@ -34,9 +34,9 @@ const CreateAspirant = () => {
                 onFinish={onFinishForm}
               >
                 <Form.Item
-                  label="Identificacion"
+                  label="Identificación"
                   name="cedula"
-                  rules={[{ required: true, message: 'Identificacion obligatoria!' }]}
+                  rules={[{ required: true, message: 'Identificación obligatoria!' }]}
                 >
                   <Input />
                 </Form.Item>
@@ -77,7 +77,7 @@ const CreateAspirant = () => {
                     )}
                   </Upload>
                 </Form.Item>
-                <Form.Item label="Examenes medicos" valuePropName="fileList">
+                <Form.Item label="Exámenes médicos" valuePropName="fileList">
                   <Upload
                     accept="image/png, image/jpeg, image/jpg"
                     action="/upload.do"
