@@ -29,53 +29,64 @@ const useFormAspirantViewModel = () => {
   const [centinela, setCentinela] = useState(false)
   const [keys, setKeys] = useState([])
 
-  const [fechaElaboracion, setFechaElaboracion]= useState('')
+  const [fechaElaboracion, setFechaElaboracion] = useState('')
 
   const obtenerDatos = async () => {
     const q = query(collection(db, 'usuarios'), where('cedula', '==', userId))
 
     const querySnapshot2 = await getDocs(q)
+    let aux = 1
     querySnapshot2.forEach((doc) => {
-      let data = doc.data()
-      console.log(data)
-      setUserData(doc.data())
-      form.setFieldValue('nombre', data.nombre)
-      form.setFieldValue('cedula', data.cedula)
-      form.setFieldValue('apellidos', data.apellido)
-      setKeys(['1'])
-      if (data.registroFormulario) {
+      // console.log(aux)
+      if (aux == 1) {
+        let data = doc.data()
+        // console.log(data)
         setUserData(doc.data())
-        form.setFieldValue('telefono', data.telefono)
-        form.setFieldValue('direccion', data.direccion)
-        form.setFieldValue('ciudad', data.ciudad)
-        form.setFieldValue('fechaNacimiento', data.fechaNacimiento)
-        form.setFieldValue('email', data.email)
-        form.setFieldValue('rh', data.rh)
-        form.setFieldValue('cargo', data.cargo)
-        form.setFieldValue('salario', data.salario)
-        form.setFieldValue('nivelEducativo', data.nivelEducativo)
-        form.setFieldValue('fondoPension', data.fondoPension)
-        form.setFieldValue('fondoSalud', data.fondoSalud)
-        form.setFieldValue('cajaCompensacion', data.cajaCompensacion)
-        // form.setFieldValue('fechaElaboracion', data.fechaElaboracion)
-        // form.setFieldValue('inicioContrato', data.inicioContrato)
-        form.setFieldValue('empresa', data.empresa)
-        form.setFieldValue('cargo', data.cargo)
-        form.setFieldValue('salarioExperiencia', data.salarioExperiencia)
-        form.setFieldValue('telefonoExperiencia', data.telefonoExperiencia)
-        form.setFieldValue('jefeInmediato', data.jefeInmediato)
-        form.setFieldValue('motivoRetiro', data.motivoRetiro)
-        form.setFieldValue('cargoExperiencia', data.cargoExperiencia)
-        setKeys(['1', '2'])
+        form.setFieldValue('nombre', data.nombre)
+        form.setFieldValue('cedula', data.cedula)
+        form.setFieldValue('apellidos', data.apellido)
+        setKeys(['1'])
+        if (data.registroFormulario) {
+          setUserData(doc.data())
+          form.setFieldValue('telefono', data.telefono)
+          form.setFieldValue('direccion', data.direccion)
+          form.setFieldValue('ciudad', data.ciudad)
+          form.setFieldValue('fechaNacimiento', data.fechaNacimiento)
+          form.setFieldValue('email', data.email)
+          form.setFieldValue('rh', data.rh)
+          form.setFieldValue('cargo', data.cargo)
+          form.setFieldValue('salario', data.salario)
+          form.setFieldValue('nivelEducativo', data.nivelEducativo)
+          form.setFieldValue('fondoPension', data.fondoPension)
+          form.setFieldValue('fondoSalud', data.fondoSalud)
+          form.setFieldValue('cajaCompensacion', data.cajaCompensacion)
+          // form.setFieldValue('fechaElaboracion', data.fechaElaboracion)
+          // form.setFieldValue('inicioContrato', data.inicioContrato)
+          form.setFieldValue('empresa', data.empresa)
+          form.setFieldValue('cargo', data.cargo)
+          form.setFieldValue('salarioExperiencia', data.salarioExperiencia)
+          form.setFieldValue('telefonoExperiencia', data.telefonoExperiencia)
+          form.setFieldValue('jefeInmediato', data.jefeInmediato)
+          form.setFieldValue('motivoRetiro', data.motivoRetiro)
+          form.setFieldValue('cargoExperiencia', data.cargoExperiencia)
+          setKeys(['1', '2'])
+        }
       }
+      aux += 1
     })
   }
 
   const onFinish = async (estado) => {
     message.info('cargando...')
-    setDisabledButton(true)
+
     console.log(estado.salarioExperiencia)
+    if (!/^[0-9]+$/.test(estado.telefono)) {
+      message.warning('El telefono debe ser numerico.')
+      form.setFieldValue('telefono', '')
+      return
+    }
     // return
+    setDisabledButton(true)
     try {
       const coleccionRef = collection(db, 'usuarios')
       const docRef = doc(coleccionRef, userData.cedula)
@@ -110,6 +121,7 @@ const useFormAspirantViewModel = () => {
           cargoExperiencia: estado.cargoExperiencia,
           registroFormulario: true
         }
+
         await setDoc(doc(db, 'usuarios', userData.cedula), docData).catch((e) => {
           console.log(e)
         })
@@ -228,7 +240,6 @@ const useFormAspirantViewModel = () => {
     keys,
     fechaElaboracion,
     setFechaElaboracion
-
   }
 }
 

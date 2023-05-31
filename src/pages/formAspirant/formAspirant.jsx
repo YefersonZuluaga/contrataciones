@@ -1,4 +1,5 @@
 import { Collapse, DatePicker, Form, Image, Input, Spin } from 'antd'
+import moment from 'moment/moment'
 import React, { useState } from 'react'
 import Header from '../components/header/Header'
 import './styles.scss'
@@ -29,7 +30,7 @@ const FormAspirant = () => {
     setFechaElaboracion
   } = useFormAspirantViewModel()
 
-  const [prueba, setPrueba] = useState('lunes, 29 de may de 2023')
+  const [prueba, setPrueba] = useState()
 
   const onChange = (date, dateString) => {
     console.log(date, dateString)
@@ -38,6 +39,7 @@ const FormAspirant = () => {
   }
 
   const handleFecha = (date) => {
+    console.log(moment(date).format('YYYY-MM-DD'))
     const opciones = {
       weekday: 'long',
       year: 'numeric',
