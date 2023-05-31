@@ -114,8 +114,13 @@ const MyDocument = ({ Compañia, empleado, fecha, cargo }) => (
       </Text>
       <Text style={styles.sectionTitle}>Obligaciones del Empleado</Text>
       <Text style={styles.text}>
-        El empleado se compromete a cumplir con sus obligaciones laborales con diligencia y lealtad,
-        siguiendo las políticas y procedimientos de la empresa.
+        OBLIGACIONES: El TRABAJADOR deberá cumplir con las siguientesobligaciones: a. Colocar al
+        servicio del EMPLEADOR su capacidad normal de trabajo,de manera exclusiva en el desempeño de
+        las funciones encomendadas y en laslabores conexas, según ordenes e instrucciones del
+        empleador o sus representantes.b. Trabajar durante la vigencia del presente contrato única y
+        exclusivamente al serviciodel EMPLEADOR. c. Cumplir con la jornada de trabajo dentro de los
+        turnos y horarioseñalado por el EMPLEADOR. d. Las demás consagradas en el artículo 58 del
+        CódigoSustantivo del Trabajo
       </Text>
       <Text style={styles.sectionTitle}>Salario y Beneficios</Text>
       <Text style={styles.text}>
@@ -127,6 +132,14 @@ const MyDocument = ({ Compañia, empleado, fecha, cargo }) => (
         El contrato es a término indefinido, y las condiciones de terminación se ajustarán a las
         normas legales vigentes.
       </Text>
+      <Text style={styles.sectionTitle}>Firma Trabajador :</Text>
+      <Text style={styles.text}></Text>
+      <Text style={styles.sectionTitle}>______________________</Text>
+
+      <Text style={styles.sectionTitle}>Firma Empleador :</Text>
+      <Text style={styles.text}></Text>
+      <Text style={styles.sectionTitle}>______________________</Text>
+
       {/* ...agrega más texto aquí según sea necesario para tu contrato... */}
     </Page>
   </Document>
