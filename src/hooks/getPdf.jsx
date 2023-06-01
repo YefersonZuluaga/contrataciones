@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 // Datos del contrato (deberías obtener estos de tus propios datos)
 
 // Crea el documento
-const MyDocument = ({ Compañia, empleado, fecha, cargo }) => (
+const MyDocument = ({ Compañia, empleado, fecha, cargo, direccion, fechanacimiento, salario }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <Text style={styles.title}>Contrato Individual de Trabajo a Término Indefinido</Text>
@@ -72,23 +72,23 @@ const MyDocument = ({ Compañia, empleado, fecha, cargo }) => (
           </View>
           <View style={styles.cell}>
             <Text style={styles.textTable}>DIRECCION TRABAJADOR</Text>
-            <Text style={styles.textTable}>VILLA XIMENA</Text>
+            <Text style={styles.textTable}>{direccion}</Text>
           </View>
         </View>
         <View style={styles.row}>
           <View style={styles.cell}>
             <Text style={styles.textTable}>FECHA DE NACIMIENTO</Text>
-            <Text style={styles.textTable}>24-03-2001</Text>
+            <Text style={styles.textTable}>{fechanacimiento}</Text>
           </View>
           <View style={styles.cell}>
             <Text style={styles.textTable}>CARGO</Text>
-            <Text style={styles.textTable}>OPERARIO</Text>
+            <Text style={styles.textTable}>{cargo}</Text>
           </View>
         </View>
         <View style={styles.row}>
           <View style={styles.cell}>
             <Text style={styles.textTable}>SALARIO</Text>
-            <Text style={styles.textTable}>100000</Text>
+            <Text style={styles.textTable}>{salario}</Text>
           </View>
           <View style={styles.cell}>
             <Text style={styles.textTable}>PERIODO DE PAGO</Text>
@@ -103,7 +103,7 @@ const MyDocument = ({ Compañia, empleado, fecha, cargo }) => (
         además por las siguientes cláusulas:
       </Text>
       <Text style={styles.text}>
-        <Text style={styles.textBold}> PRIMERA: OBJETO</Text>,EL EMPLEADOR contrata los servicios
+        <Text style={styles.textBold}>PRIMERA: OBJETO</Text>,EL EMPLEADOR contrata los servicios
         personales de EL TRABAJADOR y éste se obliga: a. a poner a servicio de EL EMPLEADOR toda su
         capacidad normal de trabajo en el desempeño de las funciones propias del oficio mencionado y
         en las labores anexas y complementarias del mismo.
@@ -114,13 +114,12 @@ const MyDocument = ({ Compañia, empleado, fecha, cargo }) => (
       </Text>
       <Text style={styles.sectionTitle}>Obligaciones del Empleado</Text>
       <Text style={styles.text}>
-        OBLIGACIONES: El TRABAJADOR deberá cumplir con las siguientesobligaciones: a. Colocar al
-        servicio del EMPLEADOR su capacidad normal de trabajo,de manera exclusiva en el desempeño de
-        las funciones encomendadas y en laslabores conexas, según ordenes e instrucciones del
-        empleador o sus representantes.b. Trabajar durante la vigencia del presente contrato única y
-        exclusivamente al serviciodel EMPLEADOR. c. Cumplir con la jornada de trabajo dentro de los
-        turnos y horarioseñalado por el EMPLEADOR. d. Las demás consagradas en el artículo 58 del
-        CódigoSustantivo del Trabajo
+        OBLIGACIONES: El TRABAJADOR deberá cumplir con las siguientesobligaciones:
+        a. Colocar al servicio del EMPLEADOR su capacidad normal de trabajo,de manera exclusiva en el desempeño de las funciones
+        encomendadas y en laslabores conexas, según ordenes e instrucciones del empleador o sus representantes.
+        b. Trabajar durante la vigencia del presente contrato única y exclusivamente al serviciodel EMPLEADOR.
+        c. Cumplir con la jornada de trabajo dentro de los turnos y horarioseñalado por el EMPLEADOR.
+        d. Las demás consagradas en el artículo 58 del CódigoSustantivo del Trabajo
       </Text>
       <Text style={styles.sectionTitle}>Salario y Beneficios</Text>
       <Text style={styles.text}>
